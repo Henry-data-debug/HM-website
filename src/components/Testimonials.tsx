@@ -1,79 +1,64 @@
-import { useEffect, useState } from 'react';
-import { Star, Quote, Loader2 } from 'lucide-react';
+import { Star, Quote } from 'lucide-react';
+import { testimonials } from '../data/content';
 import { SectionHeading } from './About';
 import { useRevealGroup } from '../hooks/useRevealGroup';
-import { supabase } from '../lib/supabase';
-import type { Testimonial } from '../types/db';
 
 export function Testimonials() {
   const ref = useRevealGroup<HTMLDivElement>();
-  const [items, setItems] = useState<Testimonial[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    supabase
-      .from('testimonials')
-      .select('*')
-      .order('sort_order', { ascending: true })
-      .then(({ data }) => {
-        if (data) setItems(data as Testimonial[]);
-        setLoading(false);
-      });
-  }, []);
 
   return (
-    <section id="testimonials" className="section-padding relative">
+    <section className="section-padding relative overflow-hidden">
+      {/* Ambient */}
+      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[400px] w-[600px] rounded-full bg-cyan-500/[0.06] blur-[120px] -z-10" />
+
       <div ref={ref} className="mx-auto max-w-7xl">
         <SectionHeading
-          eyebrow="Testimonials"
-          title="What Our Clients Say"
-          description="Long-term partnerships built on trust, transparency, and measurable results."
+          eyebrow="Client Results"
+          title="Trusted by Leading Teams"
+          description="Real feedback from organizations we've helped transform."
         />
 
-        {loading ? (
-          <div className="mt-14 flex justify-center">
-            <Loader2 className="h-8 w-8 animate-spin text-electric-400" />
-          </div>
-        ) : items.length === 0 ? (
-          <p className="mt-14 text-center text-silver-400">Testimonials coming soon.</p>
-        ) : (
-          <div className="mt-14 grid gap-6 lg:grid-cols-3">
-            {items.map((t, i) => (
-              <figure
-                key={t.id}
-                className="reveal group relative flex flex-col rounded-3xl glass p-7 transition-all duration-500 hover:-translate-y-2 hover:shadow-glass-hover"
-                style={{ transitionDelay: `${i * 90}ms` }}
-              >
-                <Quote className="absolute right-6 top-6 h-10 w-10 text-electric-500/15" />
-
-                <div className="flex gap-0.5">
-                  {Array.from({ length: t.rating }).map((_, s) => (
-                    <Star key={s} className="h-4 w-4 fill-ember-500 text-ember-500" />
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {testimonials.map((t, i) => (
+            <article
+              key={t.name}
+              className="reveal bento-card group flex flex-col justify-between p-6"
+              style={{ transitionDelay: `${i * 90}ms` }}
+            >
+              <div>
+                {/* Stars */}
+                <div className="flex items-center gap-1">
+                  {Array.from({ length: t.rating }).map((_, j) => (
+                    <Star key={j} className="h-4 w-4 fill-amber-400 text-amber-400" />
                   ))}
                 </div>
 
-                <blockquote className="mt-5 flex-1 text-sm leading-relaxed text-silver-200">
-                  &ldquo;{t.quote}&rdquo;
-                </blockquote>
+                {/* Quote Icon */}
+                <Quote className="mt-4 h-6 w-6 text-white/10" />
 
-                <figcaption className="mt-6 flex items-center gap-3 border-t border-white/10 pt-5">
-                  <span
-                    className={`flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br ${t.gradient} font-display text-sm font-bold text-white shadow-glow`}
-                  >
-                    {t.initials || t.name.slice(0, 2).toUpperCase()}
-                  </span>
-                  <div className="flex flex-col">
-                    <span className="font-display text-sm font-semibold text-white">{t.name}</span>
-                    <span className="text-xs text-silver-400">
-                      {t.role}
-                      {t.company ? `, ${t.company}` : ''}
-                    </span>
-                  </div>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-        )}
+                {/* Quote Text */}
+                <p className="mt-3 text-sm leading-relaxed text-slate-300 italic">
+                  "{t.quote}"
+                </p>
+              </div>
+
+              {/* Author */}
+              <div className="mt-6 flex items-center gap-3 pt-5 border-t border-white/[0.08]">
+                <span
+                  className={`flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br ${t.gradient} font-display text-xs font-bold text-white shadow-md`}
+                >
+                  {t.initials}
+                </span>
+                <div>
+                  <p className="font-display text-sm font-bold text-white">{t.name}</p>
+                  <p className="text-xs text-slate-400">
+                    {t.role}{t.company ? ` · ${t.company}` : ''}
+                  </p>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -6,70 +6,58 @@ export function Process() {
   const ref = useRevealGroup<HTMLDivElement>();
 
   return (
-    <section id="process" className="section-padding relative">
+    <section id="process" className="section-padding relative overflow-hidden">
+      {/* Ambient glow */}
+      <div className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 h-[350px] w-[600px] rounded-full bg-indigo-500/[0.07] blur-[100px] -z-10" />
+
       <div ref={ref} className="mx-auto max-w-7xl">
         <SectionHeading
           eyebrow="How We Work"
-          title="Our Proven Process"
-          description="A transparent, seven-step framework that turns ideas into reliable, shipped products."
+          title="Our Delivery Process"
+          description="A proven, structured approach from first conversation to post-launch support."
         />
 
-        <div className="mt-16">
-          {/* Desktop horizontal timeline */}
-          <div className="hidden lg:block">
-            <div className="relative">
-              {/* connecting line */}
-              <div className="absolute left-0 right-0 top-9 h-0.5 bg-gradient-to-r from-electric-500/40 via-electric-500/20 to-ember-500/40" />
-              <div className="grid grid-cols-7 gap-3">
-                {processSteps.map((step, i) => (
-                  <div
-                    key={step.number}
-                    className="reveal flex flex-col items-center text-center"
-                    style={{ transitionDelay: `${i * 90}ms` }}
-                  >
-                    <div className="relative z-10 flex items-center justify-center">
-                      <span className="flex h-16 w-16 items-center justify-center rounded-2xl glass-strong font-display text-lg font-bold text-gradient shadow-glass transition-all duration-500 hover:scale-110 hover:shadow-glow">
-                        {step.number}
-                      </span>
-                    </div>
-                    <h3 className="mt-5 font-display text-base font-semibold text-white">
-                      {step.title}
-                    </h3>
-                    <p className="mt-2 text-xs leading-relaxed text-silver-400">
-                      {step.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+        {/* Timeline */}
+        <div className="relative mt-14">
+          {/* Vertical connector line */}
+          <div className="absolute left-5 top-0 bottom-0 w-px bg-gradient-to-b from-cyan-500/40 via-electric-500/30 to-transparent hidden lg:block lg:left-1/2 lg:-translate-x-px" />
 
-          {/* Mobile vertical timeline */}
-          <div className="lg:hidden">
-            <div className="relative mx-auto max-w-md">
-              <div className="absolute left-7 top-0 bottom-0 w-0.5 bg-gradient-to-b from-electric-500/40 via-electric-500/20 to-ember-500/40" />
-              <div className="flex flex-col gap-6">
-                {processSteps.map((step, i) => (
-                  <div
-                    key={step.number}
-                    className="reveal relative flex items-start gap-5"
-                    style={{ transitionDelay: `${i * 70}ms` }}
-                  >
-                    <span className="relative z-10 flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl glass-strong font-display text-base font-bold text-gradient shadow-glass">
-                      {step.number}
-                    </span>
-                    <div className="glass rounded-2xl p-4 pt-4">
-                      <h3 className="font-display text-base font-semibold text-white">
-                        {step.title}
-                      </h3>
-                      <p className="mt-1.5 text-sm leading-relaxed text-silver-300">
-                        {step.description}
-                      </p>
-                    </div>
+          <div className="grid gap-6 lg:gap-8">
+            {processSteps.map((step, i) => (
+              <div
+                key={step.number}
+                className="reveal flex items-start gap-5 lg:gap-0"
+                style={{ transitionDelay: `${i * 70}ms` }}
+              >
+                {/* Left content (even items on desktop) */}
+                <div className={`hidden lg:block lg:w-1/2 ${i % 2 === 0 ? 'lg:pr-12 lg:text-right' : 'lg:order-3 lg:pl-12'}`}>
+                  <div className="bento-card inline-block p-5 text-left">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-cyan-400">Step {step.number}</span>
+                    <h3 className="mt-1.5 font-display text-lg font-bold text-white">{step.title}</h3>
+                    <p className="mt-1.5 text-sm leading-relaxed text-slate-300">{step.description}</p>
                   </div>
-                ))}
+                </div>
+
+                {/* Center dot / number */}
+                <div className="relative z-10 flex-shrink-0 lg:order-2">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-cyan-500/40 bg-[#0B1120] font-display text-sm font-extrabold text-cyan-400 shadow-glow-cyan">
+                    {step.number}
+                  </span>
+                </div>
+
+                {/* Mobile content / Right spacer */}
+                <div className={`lg:w-1/2 lg:hidden`}>
+                  <div className="bento-card p-5">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-cyan-400">Step {step.number}</span>
+                    <h3 className="mt-1.5 font-display text-lg font-bold text-white">{step.title}</h3>
+                    <p className="mt-1.5 text-sm leading-relaxed text-slate-300">{step.description}</p>
+                  </div>
+                </div>
+
+                {/* Desktop spacer */}
+                <div className={`hidden lg:block lg:w-1/2 ${i % 2 === 0 ? 'lg:order-3' : ''}`} />
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>

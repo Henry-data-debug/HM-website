@@ -2,64 +2,37 @@ import { technologies } from '../data/content';
 import { SectionHeading } from './About';
 import { useRevealGroup } from '../hooks/useRevealGroup';
 
-/** Brand-style monogram badge for each technology. */
-function TechBadge({ name }: { name: string }) {
-  const initials = name
-    .split(/[\s.]+/)
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((w) => w[0])
-    .join('')
-    .toUpperCase();
-
-  return (
-    <div className="group flex flex-col items-center gap-3">
-      <div className="relative flex h-20 w-20 items-center justify-center rounded-2xl glass transition-all duration-500 hover:-translate-y-2 hover:border-electric-500/40 hover:shadow-glow">
-        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-electric-500/0 to-electric-500/0 transition-all duration-500 group-hover:from-electric-500/15 group-hover:to-ember-500/10" />
-        <span className="font-display text-xl font-bold text-gradient-silver transition-colors group-hover:text-white">
-          {initials}
-        </span>
-      </div>
-      <span className="text-xs font-medium text-silver-300 transition-colors group-hover:text-white">
-        {name}
-      </span>
-    </div>
-  );
-}
+const categoryColors: Record<string, string> = {
+  Frontend: 'text-cyan-400 border-cyan-500/30 bg-cyan-500/[0.08]',
+  Backend: 'text-electric-300 border-electric-500/30 bg-electric-500/[0.08]',
+  Data: 'text-ember-400 border-ember-500/30 bg-ember-500/[0.08]',
+  DevOps: 'text-indigo-300 border-indigo-500/30 bg-indigo-500/[0.08]',
+  Cloud: 'text-purple-300 border-purple-500/30 bg-purple-500/[0.08]',
+};
 
 export function Technologies() {
   const ref = useRevealGroup<HTMLDivElement>();
 
-  // Duplicate for seamless marquee
-  const loop = [...technologies, ...technologies];
-
   return (
-    <section id="technologies" className="section-padding relative">
-      <div ref={ref} className="mx-auto max-w-7xl">
+    <section className="section-padding relative overflow-hidden">
+      <div ref={ref} className="mx-auto max-w-5xl">
         <SectionHeading
-          eyebrow="Our Stack"
-          title="Technologies We Work With"
-          description="A modern, battle-tested toolkit spanning frontend, backend, data, cloud, and DevOps."
+          eyebrow="Tech Stack"
+          title="Modern Tools & Technologies"
+          description="We build on well-supported, enterprise-grade frameworks and platforms."
         />
 
-        {/* Marquee row */}
-        <div className="reveal mt-14 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
-          <div className="flex w-max gap-6 animate-marquee">
-            {loop.map((tech, i) => (
-              <div
-                key={`${tech.name}-${i}`}
-                className="flex h-28 w-36 flex-shrink-0 items-center justify-center"
-              >
-                <TechBadge name={tech.name} />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Static grid (smaller screens see this clearly too) */}
-        <div className="reveal mt-10 grid grid-cols-3 gap-4 sm:grid-cols-5 lg:grid-cols-8">
-          {technologies.map((tech) => (
-            <TechBadge key={tech.name} name={tech.name} />
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
+          {technologies.map((tech, i) => (
+            <span
+              key={`${tech.name}-${i}`}
+              className={`reveal inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-all hover:scale-105 hover:shadow-md ${
+                categoryColors[tech.category] ?? 'text-slate-300 border-white/10 bg-white/[0.03]'
+              }`}
+              style={{ transitionDelay: `${i * 40}ms` }}
+            >
+              {tech.name}
+            </span>
           ))}
         </div>
       </div>

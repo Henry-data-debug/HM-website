@@ -207,6 +207,9 @@ export interface ProjectItem {
   summary: string;
   gradient: string;
   icon: string;
+  tags: string[];
+  exampleStack: string[];
+  liveDemoUrl?: string;
 }
 
 export const projects: ProjectItem[] = [
@@ -217,6 +220,8 @@ export const projects: ProjectItem[] = [
     summary: 'A responsive business website that gives teams an easy way to present their services, publish updates, and turn visitors into qualified enquiries.',
     gradient: 'from-electric-600 to-electric-800',
     icon: 'globe',
+    tags: ['Web'],
+    exampleStack: ['React', 'Node.js', 'Microsoft Azure'],
   },
   {
     title: 'E-commerce Platform',
@@ -225,6 +230,8 @@ export const projects: ProjectItem[] = [
     summary: 'A complete shopping experience with organized product discovery, a smooth checkout journey, secure payments, and stock information that stays current.',
     gradient: 'from-ember-500 to-ember-600',
     icon: 'cart',
+    tags: ['Web'],
+    exampleStack: ['React', 'Node.js', 'MySQL'],
   },
   {
     title: 'Business Dashboard',
@@ -233,6 +240,8 @@ export const projects: ProjectItem[] = [
     summary: 'A single decision-making view that brings sales, finance, and operations together so leadership can spot trends and act with confidence.',
     gradient: 'from-electric-500 to-electric-700',
     icon: 'chart',
+    tags: ['Analytics'],
+    exampleStack: ['Power BI', 'Python', 'MySQL'],
   },
   {
     title: 'Inventory System',
@@ -241,6 +250,8 @@ export const projects: ProjectItem[] = [
     summary: 'A practical inventory workflow for tracking stock across locations, reducing manual errors, and alerting teams before important items run out.',
     gradient: 'from-electric-600 to-navy-800',
     icon: 'box',
+    tags: ['Automation', 'Software'],
+    exampleStack: ['React', 'Node.js', 'MySQL'],
   },
   {
     title: 'School Management System',
@@ -249,6 +260,8 @@ export const projects: ProjectItem[] = [
     summary: 'A connected school platform that keeps student records, fee collection, academic progress, and parent communication organized in one place.',
     gradient: 'from-ember-500 to-electric-700',
     icon: 'school',
+    tags: ['Automation', 'Software'],
+    exampleStack: ['React', 'Node.js', 'Microsoft Azure'],
   },
   {
     title: 'Marketing Campaign',
@@ -257,6 +270,8 @@ export const projects: ProjectItem[] = [
     summary: 'A focused growth campaign combining search visibility, paid promotion, and clear messaging to attract more of the right audience.',
     gradient: 'from-electric-500 to-ember-500',
     icon: 'megaphone',
+    tags: ['Digital Marketing'],
+    exampleStack: ['Google Ads', 'Meta Ads', 'SEO'],
   },
 ];
 

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Calculator,
   Send,
@@ -47,6 +47,18 @@ export function GetAQuote() {
   const [form, setForm] = useState<QuoteForm>(initialForm);
   const [status, setStatus] = useState<Status>('idle');
   const [errorMsg, setErrorMsg] = useState('');
+
+  useEffect(() => {
+    const onServiceSelect = (event: Event) => {
+      const service = (event as CustomEvent<string>).detail;
+      if (serviceOptions.includes(service)) {
+        setForm((current) => ({ ...current, service }));
+      }
+    };
+
+    window.addEventListener('select-service', onServiceSelect);
+    return () => window.removeEventListener('select-service', onServiceSelect);
+  }, []);
 
   const update =
     (key: keyof QuoteForm) =>

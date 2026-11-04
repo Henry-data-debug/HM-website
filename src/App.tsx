@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { BackgroundFX } from './components/BackgroundFX';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
+import { TrustTicker } from './components/TrustTicker';
+import { ResultsImpact } from './components/ResultsImpact';
 import { About } from './components/About';
 import { Services } from './components/Services';
 import { WhyChooseUs } from './components/WhyChooseUs';
@@ -48,11 +50,11 @@ function App() {
 
   if (route === 'admin') {
     return (
-      <div className="relative min-h-screen text-silver-200">
+      <div className="relative min-h-screen text-slate-200">
         <BackgroundFX />
         {loading ? (
           <div className="flex min-h-screen items-center justify-center">
-            <div className="h-8 w-8 animate-spin rounded-full border-2 border-electric-500 border-t-transparent" />
+            <div className="h-8 w-8 animate-spin rounded-full border-2 border-cyan-500 border-t-transparent" />
           </div>
         ) : session ? (
           <AdminDashboard onBack={goSite} />
@@ -64,80 +66,84 @@ function App() {
   }
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden text-silver-200">
+    <div className="relative min-h-screen overflow-x-hidden text-slate-200">
       <BackgroundFX />
       <Navbar />
       <main>
-        {/* Hero — full-bleed image background, centered text */}
+        {/* 1. Hero — Full-bleed midnight with ambient glow */}
         <Hero />
 
-        {/* About — mid tone */}
-        <div className="section-tone-mid">
-          <About />
-        </div>
+        {/* 2. Trust Ticker — Immediately below hero */}
+        <TrustTicker />
 
-        <GlowDivider accent="blue" />
-
-        {/* Services — dark base tone */}
-        <div className="section-tone-dark">
+        {/* 3. Interactive Bento-Grid Services — Slate tone */}
+        <div className="section-tone-slate">
           <Services />
         </div>
 
-        <GlowDivider accent="ember" />
-
-        {/* Why Choose Us — accent gradient tone */}
-        <div className="section-tone-accent">
-          <WhyChooseUs />
-        </div>
+        {/* Results & Impact — grounded in existing client testimonials */}
+        <ResultsImpact />
 
         <GlowDivider accent="blue" />
 
-        {/* Process — mid tone */}
-        <div className="section-tone-mid">
-          <Process />
-        </div>
-
-        <GlowDivider accent="ember" />
-
-        {/* Projects — dark base tone */}
-        <div className="section-tone-dark">
+        {/* Projects Portfolio — Midnight */}
+        <div className="section-tone-midnight">
           <Projects />
         </div>
 
         <GlowDivider accent="blue" />
 
-        {/* Technologies — accent gradient tone */}
-        <div className="section-tone-accent">
+        {/* About — Midnight with ambient light */}
+        <div className="section-tone-midnight">
+          <About />
+        </div>
+
+        <GlowDivider accent="ember" />
+
+        {/* Why Choose Us — Elevated */}
+        <div className="section-tone-elevated">
+          <WhyChooseUs />
+        </div>
+
+        <GlowDivider accent="blue" />
+
+        {/* Our Process — Slate */}
+        <div className="section-tone-slate">
+          <Process />
+        </div>
+
+        <GlowDivider accent="ember" />
+
+        {/* Technologies — Elevated */}
+        <div className="section-tone-elevated">
           <Technologies />
         </div>
 
         <GlowDivider accent="ember" />
 
-        {/* Testimonials — mid tone */}
-        <div className="section-tone-mid">
+        {/* Testimonials — Slate */}
+        <div className="section-tone-slate">
           <Testimonials />
         </div>
 
         <GlowDivider accent="blue" />
 
-        {/* Get a Quote — dark base tone */}
-        <div className="section-tone-dark">
+        {/* Get a Quote — Midnight */}
+        <div className="section-tone-midnight">
           <GetAQuote />
         </div>
 
-        {/* CTA — accent gradient tone (flows into footer) */}
-        <div className="section-tone-accent">
-          <CTA />
-        </div>
+        {/* CTA — Full ambient section */}
+        <CTA />
 
-        {/* Contact — mid tone */}
-        <div className="section-tone-mid">
+        {/* Contact — Elevated */}
+        <div className="section-tone-elevated">
           <Contact />
         </div>
       </main>
       <Footer />
       <WhatsAppButton />
-      {/* hidden anchor keeps admin route reachable via footer/nav without scroll target */}
+      {/* hidden anchor keeps admin route reachable */}
       <span id="admin" className="hidden" aria-hidden />
     </div>
   );

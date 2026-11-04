@@ -13,6 +13,7 @@ export function useRevealGroup<T extends HTMLElement = HTMLDivElement>(
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    let childObserver: MutationObserver | undefined;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -20,13 +21,22 @@ export function useRevealGroup<T extends HTMLElement = HTMLDivElement>(
             child.classList.add('is-visible');
           });
           el.classList.add('is-visible');
+          childObserver = new MutationObserver(() => {
+            el.querySelectorAll<HTMLElement>('.reveal:not(.is-visible)').forEach((child) => {
+              child.classList.add('is-visible');
+            });
+          });
+          childObserver.observe(el, { childList: true, subtree: true });
           observer.unobserve(entry.target);
         }
       },
       { threshold: 0.1, rootMargin: '0px 0px -50px 0px', ...options }
     );
     observer.observe(el);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      childObserver?.disconnect();
+    };
   }, [options]);
 
   return ref;
