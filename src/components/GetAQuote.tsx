@@ -40,7 +40,6 @@ const initialForm: QuoteForm = {
   description: '',
 };
 
-const budgets = ['Under $500', '$500 – $2,000', '$2,000 – $5,000', '$5,000 – $10,000', '$10,000+'];
 const timelines = ['ASAP', '1 month', '1 – 3 months', '3 – 6 months', 'Flexible'];
 
 export function GetAQuote() {
@@ -196,13 +195,14 @@ export function GetAQuote() {
                     ))}
                   </select>
                 </Field>
-                <Field label="Estimated Budget">
-                  <select value={form.budget} onChange={update('budget')} className={inputClass}>
-                    <option value="">Select a range</option>
-                    {budgets.map((b) => (
-                      <option key={b} value={b} className="bg-navy-800">{b}</option>
-                    ))}
-                  </select>
+                <Field label="Estimated Budget (KSh)">
+                  <input
+                    type="text"
+                    value={form.budget}
+                    onChange={update('budget')}
+                    placeholder="e.g. KSh 50,000"
+                    className={inputClass}
+                  />
                 </Field>
                 <div className="sm:col-span-2">
                   <Field label="Preferred Timeline">
