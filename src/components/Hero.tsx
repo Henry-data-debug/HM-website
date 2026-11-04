@@ -100,7 +100,11 @@ export function Hero() {
         </div>
 
         {/* Fluid Bold Headline */}
-        <h1 className="mt-8 font-display text-4xl font-extrabold tracking-tight text-white sm:text-6xl lg:text-7xl xl:text-[5rem] leading-[1.08]">
+        <h1 className="mt-8 font-display text-3xl font-extrabold leading-tight text-white sm:text-4xl lg:text-5xl">
+          Engineering Digital Excellence
+        </h1>
+
+        <h2 className="mt-4 font-display text-4xl font-extrabold tracking-tight text-white sm:text-6xl lg:text-7xl xl:text-[5rem] leading-[1.08]">
           Automating Operations.{' '}
           <span className="block text-gradient mt-1 sm:mt-2">
             Building High-Scale Software.
@@ -108,7 +112,7 @@ export function Hero() {
           <span className="block text-gradient-cyan mt-1 sm:mt-2">
             Driving Data-Led Growth.
           </span>
-        </h1>
+        </h2>
 
         {/* Outcome-focused subheadline */}
         <p className="mx-auto mt-7 max-w-3xl text-base leading-relaxed text-slate-300 sm:text-lg md:text-xl">

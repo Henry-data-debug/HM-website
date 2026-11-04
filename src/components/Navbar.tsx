@@ -37,7 +37,7 @@ export function Navbar() {
           : 'bg-transparent py-5'
       }`}
     >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 lg:px-8">
+      <nav aria-label="Main navigation" className="mx-auto flex max-w-7xl items-center justify-between px-5 lg:px-8">
         <Logo />
 
         {/* Desktop links */}
