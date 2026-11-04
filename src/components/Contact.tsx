@@ -13,6 +13,7 @@ import { SectionHeading } from './About';
 import { useRevealGroup } from '../hooks/useRevealGroup';
 import { serviceOptions } from '../data/content';
 import { supabase } from '../lib/supabase';
+import { sendContactEmail } from '../lib/email';
 
 type Status = 'idle' | 'loading' | 'success' | 'error';
 
@@ -56,24 +57,47 @@ export function Contact() {
       return;
     }
 
-    const { error } = await supabase.from('contact_submissions').insert({
-      name: form.name,
-      email: form.email,
-      phone: form.phone || null,
-      company: form.company || null,
-      service_required: form.service || null,
-      message: form.message,
-    });
+    try {
+      // 1. Send email notification directly to wambuahenry15@gmail.com
+      const emailPromise = sendContactEmail({
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        company: form.company,
+        service: form.service,
+        message: form.message,
+      });
 
-    if (error) {
+      // 2. Also save to Supabase database
+      const dbPromise = supabase.from('contact_submissions').insert({
+        name: form.name,
+        email: form.email,
+        phone: form.phone || null,
+        company: form.company || null,
+        service_required: form.service || null,
+        message: form.message,
+      });
+
+      const [emailResult, dbResult] = await Promise.allSettled([emailPromise, dbPromise]);
+
+      const emailSuccess = emailResult.status === 'fulfilled';
+      const dbSuccess = dbResult.status === 'fulfilled' && !dbResult.value.error;
+
+      if (!emailSuccess && !dbSuccess) {
+        throw new Error('Failed to send your message. Please try again or email us directly.');
+      }
+
+      setStatus('success');
+      setForm(initialForm);
+      setTimeout(() => setStatus('idle'), 8000);
+    } catch (err: unknown) {
       setStatus('error');
-      setErrorMsg('Something went wrong. Please try again or email us directly.');
-      return;
+      setErrorMsg(
+        err instanceof Error
+          ? err.message
+          : 'Something went wrong. Please try again or email us directly at wambuahenry15@gmail.com.'
+      );
     }
-
-    setStatus('success');
-    setForm(initialForm);
-    setTimeout(() => setStatus('idle'), 6000);
   };
 
   return (

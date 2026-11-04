@@ -14,6 +14,7 @@ import { SectionHeading } from './About';
 import { useRevealGroup } from '../hooks/useRevealGroup';
 import { serviceOptions } from '../data/content';
 import { supabase } from '../lib/supabase';
+import { sendQuoteEmail } from '../lib/email';
 
 type Status = 'idle' | 'loading' | 'success' | 'error';
 
@@ -64,26 +65,52 @@ export function GetAQuote() {
       return;
     }
 
-    const { error } = await supabase.from('quote_requests').insert({
-      name: form.name,
-      email: form.email,
-      phone: form.phone || null,
-      company: form.company || null,
-      service: form.service,
-      budget: form.budget || null,
-      timeline: form.timeline || null,
-      description: form.description,
-    });
+    try {
+      // 1. Send email notification directly to wambuahenry15@gmail.com
+      const emailPromise = sendQuoteEmail({
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        company: form.company,
+        service: form.service,
+        budget: form.budget,
+        timeline: form.timeline,
+        description: form.description,
+      });
 
-    if (error) {
+      // 2. Also save to Supabase database for admin tracking
+      const dbPromise = supabase.from('quote_requests').insert({
+        name: form.name,
+        email: form.email,
+        phone: form.phone || null,
+        company: form.company || null,
+        service: form.service,
+        budget: form.budget || null,
+        timeline: form.timeline || null,
+        description: form.description,
+      });
+
+      // Execute both in parallel
+      const [emailResult, dbResult] = await Promise.allSettled([emailPromise, dbPromise]);
+
+      const emailSuccess = emailResult.status === 'fulfilled';
+      const dbSuccess = dbResult.status === 'fulfilled' && !dbResult.value.error;
+
+      if (!emailSuccess && !dbSuccess) {
+        throw new Error('Failed to submit quote request. Please try again or reach out directly via email.');
+      }
+
+      setStatus('success');
+      setForm(initialForm);
+      setTimeout(() => setStatus('idle'), 8000);
+    } catch (err: unknown) {
       setStatus('error');
-      setErrorMsg('Something went wrong. Please try again or email us directly.');
-      return;
+      setErrorMsg(
+        err instanceof Error
+          ? err.message
+          : 'Something went wrong. Please try again or contact us directly at wambuahenry15@gmail.com.'
+      );
     }
-
-    setStatus('success');
-    setForm(initialForm);
-    setTimeout(() => setStatus('idle'), 6000);
   };
 
   return (
