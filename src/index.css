@@ -51,6 +51,48 @@
 }
 
 @layer components {
+  .hero {
+    padding-top: 140px;
+    padding-bottom: 80px;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      180deg,
+      rgba(8, 21, 38, 0.85),
+      rgba(8, 21, 38, 0.6) 50%,
+      rgba(8, 21, 38, 0.95)
+    );
+  }
+
+  .hero .eyebrow {
+    margin-bottom: 20px;
+    color: #38bdf8;
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .hero h1 {
+    max-width: 900px;
+    margin: 0 auto;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.12;
+  }
+
+  .hero .hero-description {
+    max-width: 640px;
+    margin: 24px auto 36px;
+    font-size: 1.125rem;
+    line-height: 1.6;
+    opacity: 0.85;
+  }
+
   /* Elevated Glassmorphism */
   .glass {
     background: rgba(15, 23, 42, 0.65);

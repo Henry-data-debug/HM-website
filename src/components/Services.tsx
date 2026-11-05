@@ -73,7 +73,7 @@ export function Services() {
 
           {/* Card 1: Systems Architecture & Business Automation (Featured Large Bento Card - 2 Columns on LG) */}
           {(activeTab === 'all' || activeTab === 'engineering') && (
-            <div className="reveal bento-card lg:col-span-2 group flex flex-col justify-between">
+            <div className="reveal bento-card p-5 sm:p-6 lg:col-span-2 group flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
@@ -158,7 +158,7 @@ export function Services() {
 
           {/* Card 2: Software & Web Development */}
           {(activeTab === 'all' || activeTab === 'engineering') && (
-            <div className="reveal bento-card group flex flex-col justify-between">
+            <div className="reveal bento-card p-5 sm:p-6 group flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between">
                   <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-electric-600 to-indigo-600 text-white shadow-glow">
@@ -192,11 +192,11 @@ export function Services() {
                 </div>
               </div>
 
-              <div className="mt-6 pt-5 border-t border-white/[0.08] flex items-center justify-between">
-                <span className="text-xs font-medium text-slate-400">99.9% Uptime Guarantee</span>
+              <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-white/[0.08] pt-5">
+                <span className="min-w-0 text-xs font-medium text-slate-400">99.9% Uptime Guarantee</span>
                 <button
                   onClick={() => scrollToQuote('Website Development')}
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-cyan-400 hover:text-cyan-300"
+                  className="inline-flex shrink-0 items-center gap-1.5 text-xs font-semibold text-cyan-400 hover:text-cyan-300"
                 >
                   Build Software <ArrowRight className="h-3.5 w-3.5" />
                 </button>
@@ -206,7 +206,7 @@ export function Services() {
 
           {/* Card 3: Data Analytics & Business Intelligence */}
           {(activeTab === 'all' || activeTab === 'data') && (
-            <div className="reveal bento-card group flex flex-col justify-between">
+            <div className="reveal bento-card p-5 sm:p-6 group flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between">
                   <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-ember-500 to-amber-600 text-white shadow-glow-ember">
@@ -242,11 +242,11 @@ export function Services() {
                 </div>
               </div>
 
-              <div className="mt-6 pt-5 border-t border-white/[0.08] flex items-center justify-between">
-                <span className="text-xs font-medium text-slate-400">Dashboards & Forecasting</span>
+              <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-white/[0.08] pt-5">
+                <span className="min-w-0 text-xs font-medium text-slate-400">Dashboards & Forecasting</span>
                 <button
                   onClick={() => scrollToQuote('Data Analytics & Business Intelligence')}
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-ember-400 hover:text-ember-300"
+                  className="inline-flex shrink-0 items-center gap-1.5 text-xs font-semibold text-ember-400 hover:text-ember-300"
                 >
                   View Dashboards <ArrowRight className="h-3.5 w-3.5" />
                 </button>
@@ -256,7 +256,7 @@ export function Services() {
 
           {/* Card 4: Digital Marketing & Customer Acquisition */}
           {(activeTab === 'all' || activeTab === 'growth') && (
-            <div className="reveal bento-card group flex flex-col justify-between">
+            <div className="reveal bento-card p-5 sm:p-6 group flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between">
                   <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 text-white shadow-glow-cyan">
@@ -289,11 +289,11 @@ export function Services() {
                 </div>
               </div>
 
-              <div className="mt-6 pt-5 border-t border-white/[0.08] flex items-center justify-between">
-                <span className="text-xs font-medium text-slate-400">High-Converting Funnels</span>
+              <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-white/[0.08] pt-5">
+                <span className="min-w-0 text-xs font-medium text-slate-400">High-Converting Funnels</span>
                 <button
                   onClick={() => scrollToQuote('Digital Marketing')}
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-cyan-400 hover:text-cyan-300"
+                  className="inline-flex shrink-0 items-center gap-1.5 text-xs font-semibold text-cyan-400 hover:text-cyan-300"
                 >
                   Scale Acquisition <ArrowRight className="h-3.5 w-3.5" />
                 </button>
@@ -303,7 +303,7 @@ export function Services() {
 
           {/* Card 5: Enterprise IT Infrastructure & Cloud */}
           {(activeTab === 'all' || activeTab === 'data') && (
-            <div className="reveal bento-card group flex flex-col justify-between">
+            <div className="reveal bento-card p-5 sm:p-6 group flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between">
                   <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-600 to-purple-600 text-white shadow-glow">
@@ -336,11 +336,11 @@ export function Services() {
                 </div>
               </div>
 
-              <div className="mt-6 pt-5 border-t border-white/[0.08] flex items-center justify-between">
-                <span className="text-xs font-medium text-slate-400">SLA-Backed Support</span>
+              <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-white/[0.08] pt-5">
+                <span className="min-w-0 text-xs font-medium text-slate-400">SLA-Backed Support</span>
                 <button
                   onClick={() => scrollToQuote('IT Support')}
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-300 hover:text-indigo-200"
+                  className="inline-flex shrink-0 items-center gap-1.5 text-xs font-semibold text-indigo-300 hover:text-indigo-200"
                 >
                   Explore Support <ArrowRight className="h-3.5 w-3.5" />
                 </button>

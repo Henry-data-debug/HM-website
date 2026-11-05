@@ -28,7 +28,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-[92vh] items-center justify-center overflow-hidden bg-[#060911]"
+      className="hero relative flex min-h-[92vh] items-center justify-center overflow-hidden bg-[#060911]"
     >
       {/* ── Ambient Radial Lighting & Subtle Mesh ── */}
       <div className="pointer-events-none absolute inset-0 z-0">
@@ -44,8 +44,6 @@ export function Hero() {
             loading={index === 0 ? 'eager' : 'lazy'}
           />
         ))}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#060911]/80 via-[#060911]/72 to-[#060911]/55" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#060911]/25 via-transparent to-[#060911]/90" />
         <div className="absolute -top-[15%] left-1/2 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-gradient-to-b from-electric-500/20 via-cyan-500/10 to-transparent blur-3xl" />
         <div className="absolute top-[35%] -left-[10%] h-[400px] w-[500px] rounded-full bg-indigo-500/15 blur-3xl" />
         <div className="absolute top-[25%] -right-[10%] h-[450px] w-[500px] rounded-full bg-cyan-500/10 blur-3xl" />
@@ -78,17 +76,17 @@ export function Hero() {
       </div>
 
       {/* ── Main Content ── */}
-      <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center px-5 pt-40 pb-20 text-center lg:px-8">
+      <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center px-5 text-center lg:px-8">
 
-        {/* Top Badges */}
-        <div className="flex flex-wrap items-center justify-center gap-2.5">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-4 py-1.5 text-xs font-semibold text-cyan-300 backdrop-blur-md shadow-sm">
+        <div className="eyebrow inline-flex items-center gap-2">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-500" />
             </span>
             Enterprise Digital Engineering
-          </span>
+        </div>
+
+        <div className="flex flex-wrap items-center justify-center gap-2.5">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-4 py-1.5 text-xs font-medium text-slate-300 backdrop-blur-md">
             <MapPin className="h-3.5 w-3.5 text-electric-400" />
             Nairobi, Kenya
@@ -100,7 +98,7 @@ export function Hero() {
         </div>
 
         {/* Fluid Bold Headline */}
-        <h1 className="mt-8 font-display text-3xl font-extrabold leading-tight text-white sm:text-4xl lg:text-5xl">
+        <h1 className="font-display font-extrabold text-white">
           Engineering Digital Excellence
         </h1>
 
@@ -115,7 +113,7 @@ export function Hero() {
         </h2>
 
         {/* Outcome-focused subheadline */}
-        <p className="mx-auto mt-7 max-w-3xl text-base leading-relaxed text-slate-300 sm:text-lg md:text-xl">
+        <p className="hero-description text-slate-300">
           We help enterprises and growing companies build resilient web platforms,
           custom business automation pipelines, and high-converting systems engineered for measurable growth.
         </p>
