@@ -422,6 +422,7 @@ function QuotesList() {
 
           <div className="mt-3 grid gap-2 text-xs sm:grid-cols-3">
             <InfoChip label="Service" value={q.service} />
+            <InfoChip label="Source page" value={q.source_page || '/'} />
             <InfoChip label="Budget" value={q.budget || '—'} />
             <InfoChip label="Timeline" value={q.timeline || '—'} />
           </div>

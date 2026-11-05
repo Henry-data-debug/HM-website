@@ -22,6 +22,7 @@ export interface QuoteRequest {
   budget: string | null;
   timeline: string | null;
   description: string;
+  source_page: string | null;
   status: string;
   created_at: string;
 }

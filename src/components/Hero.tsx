@@ -124,7 +124,7 @@ export function Hero() {
         <div className="mt-10 flex flex-col items-center justify-center gap-4 w-full sm:w-auto">
           <div className="flex flex-col sm:flex-row items-center gap-3.5 w-full sm:w-auto">
             <button
-              onClick={() => scrollTo('#quote')}
+              onClick={() => scrollTo('#contact')}
               className="btn-primary w-full sm:w-auto text-base px-8 py-3.5 shadow-glow"
             >
               <span>Schedule Consultation</span>

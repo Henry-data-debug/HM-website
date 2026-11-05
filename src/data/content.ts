@@ -342,11 +342,10 @@ export const testimonials: TestimonialItem[] = [
 ];
 
 export const navLinks = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Services', href: '#services' },
-  { label: 'Process', href: '#process' },
-  { label: 'Projects', href: '#projects' },
+  { label: 'Home', href: '/' },
+  { label: 'About', href: '/about' },
+  { label: 'Services', href: '/services' },
+  { label: 'Projects', href: '/projects' },
   { label: 'Contact', href: '#contact' },
 ];
 

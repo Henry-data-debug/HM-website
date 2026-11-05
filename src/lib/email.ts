@@ -7,6 +7,7 @@ export interface QuoteNotificationPayload {
   budget?: string;
   timeline?: string;
   description: string;
+  sourcePage?: string;
 }
 
 export interface ContactNotificationPayload {
@@ -42,6 +43,7 @@ export async function sendQuoteEmail(quote: QuoteNotificationPayload): Promise<{
       'Service Required': quote.service,
       'Estimated Budget': quote.budget || 'Not specified',
       'Preferred Timeline': quote.timeline || 'Not specified',
+      'Submitted From': quote.sourcePage || '/',
       'Project Description': quote.description,
     }),
   });

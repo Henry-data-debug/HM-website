@@ -42,7 +42,7 @@ const initialForm: QuoteForm = {
 
 const timelines = ['ASAP', '1 month', '1 – 3 months', '3 – 6 months', 'Flexible'];
 
-export function GetAQuote() {
+export function GetAQuote({ sourcePage }: { sourcePage: string }) {
   const ref = useRevealGroup<HTMLDivElement>();
   const [form, setForm] = useState<QuoteForm>(initialForm);
   const [status, setStatus] = useState<Status>('idle');
@@ -87,6 +87,7 @@ export function GetAQuote() {
         budget: form.budget,
         timeline: form.timeline,
         description: form.description,
+        sourcePage,
       });
 
       // 2. Also save to Supabase database for admin tracking
@@ -99,6 +100,7 @@ export function GetAQuote() {
         budget: form.budget || null,
         timeline: form.timeline || null,
         description: form.description,
+        source_page: sourcePage,
       });
 
       // Execute both in parallel

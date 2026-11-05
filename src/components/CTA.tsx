@@ -31,7 +31,7 @@ export function CTA() {
         </p>
 
         <div className="mt-9 flex flex-col items-center justify-center gap-3.5 sm:flex-row">
-          <button onClick={() => scrollTo('#quote')} className="btn-primary w-full sm:w-auto text-base px-8 py-3.5">
+          <button onClick={() => scrollTo('#contact')} className="btn-primary w-full sm:w-auto text-base px-8 py-3.5">
             Schedule Consultation
             <ArrowRight className="h-4 w-4" />
           </button>

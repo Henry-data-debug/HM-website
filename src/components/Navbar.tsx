@@ -1,20 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Menu, X, ArrowRight, Shield } from 'lucide-react';
 import { navLinks } from '../data/content';
-import { useActiveSection } from '../hooks/useActiveSection';
+import { navigateTo } from '../lib/navigation';
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const active = useActiveSection([
-    'home',
-    'about',
-    'services',
-    'process',
-    'projects',
-    'quote',
-    'contact',
-  ]);
+  const currentPath = window.location.pathname.replace(/\/+$/, '') || '/';
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
@@ -22,12 +14,6 @@ export function Navbar() {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
-
-  const handleNav = (href: string) => {
-    setOpen(false);
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
 
   return (
     <header
@@ -43,12 +29,17 @@ export function Navbar() {
         {/* Desktop links */}
         <ul className="hidden items-center gap-0.5 lg:flex">
           {navLinks.map((link) => {
-            const id = link.href.slice(1);
-            const isActive = active === id;
+            const isActive = link.href === currentPath;
             return (
               <li key={link.href}>
-                <button
-                  onClick={() => handleNav(link.href)}
+                <a
+                  href={link.href}
+                  aria-current={isActive ? 'page' : undefined}
+                  onClick={(event) => {
+                    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+                    event.preventDefault();
+                    navigateTo(link.href);
+                  }}
                   className={`relative rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                     isActive ? 'text-white' : 'text-slate-400 hover:text-white'
                   }`}
@@ -57,7 +48,7 @@ export function Navbar() {
                   {isActive && (
                     <span className="absolute inset-0 -z-10 rounded-full bg-white/[0.06] ring-1 ring-white/[0.1]" />
                   )}
-                </button>
+                </a>
               </li>
             );
           })}
@@ -68,10 +59,10 @@ export function Navbar() {
           <a href="#admin" className="flex h-9 w-9 items-center justify-center rounded-full text-slate-500 transition-colors hover:text-cyan-400" aria-label="Admin login" title="Admin login">
             <Shield className="h-4 w-4" />
           </a>
-          <button onClick={() => handleNav('#contact')} className="btn-primary text-sm px-5 py-2.5">
+          <a href="#contact" onClick={(event) => { event.preventDefault(); navigateTo('#contact'); }} className="btn-primary text-sm px-5 py-2.5">
             Get Started
             <ArrowRight className="h-3.5 w-3.5" />
-          </button>
+          </a>
         </div>
 
         {/* Mobile toggle */}
@@ -94,12 +85,19 @@ export function Navbar() {
           <ul className="glass-strong flex flex-col gap-1 rounded-2xl p-3">
             {navLinks.map((link) => (
               <li key={link.href}>
-                <button
-                  onClick={() => handleNav(link.href)}
+                <a
+                  href={link.href}
+                  aria-current={link.href === currentPath ? 'page' : undefined}
+                  onClick={(event) => {
+                    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+                    event.preventDefault();
+                    setOpen(false);
+                    navigateTo(link.href);
+                  }}
                   className="w-full rounded-xl px-4 py-3 text-left text-sm font-medium text-slate-200 transition-colors hover:bg-white/[0.05] hover:text-white"
                 >
                   {link.label}
-                </button>
+                </a>
               </li>
             ))}
             <li className="mt-1">
@@ -109,13 +107,10 @@ export function Navbar() {
               </a>
             </li>
             <li className="mt-1">
-              <button
-                onClick={() => handleNav('#contact')}
-                className="btn-primary w-full"
-              >
+              <a href="#contact" onClick={(event) => { event.preventDefault(); setOpen(false); navigateTo('#contact'); }} className="btn-primary w-full">
                 Get Started
                 <ArrowRight className="h-4 w-4" />
-              </button>
+              </a>
             </li>
           </ul>
         </div>
@@ -127,10 +122,11 @@ export function Navbar() {
 function Logo() {
   return (
     <a
-      href="#home"
-      onClick={(e) => {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+      href="/"
+      onClick={(event) => {
+        if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        navigateTo('/');
       }}
       className="group flex items-center gap-2.5"
     >

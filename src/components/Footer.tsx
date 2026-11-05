@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { navLinks, services } from '../data/content';
 import { supabase } from '../lib/supabase';
+import { navigateTo } from '../lib/navigation';
 
 export function Footer() {
   const [email, setEmail] = useState('');
@@ -41,10 +42,6 @@ export function Footer() {
     setStatus('success');
     setEmail('');
     setTimeout(() => setStatus('idle'), 4000);
-  };
-
-  const handleNav = (href: string) => {
-    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -145,7 +142,7 @@ export function Footer() {
           {/* Quick Links */}
           <FooterCol title="Quick Links">
             {navLinks.map((l) => (
-              <FooterLink key={l.href} onClick={() => handleNav(l.href)}>
+              <FooterLink key={l.href} href={l.href}>
                 {l.label}
               </FooterLink>
             ))}
@@ -154,7 +151,7 @@ export function Footer() {
           {/* Services */}
           <FooterCol title="Services">
             {services.slice(0, 6).map((s) => (
-              <FooterLink key={s.title} onClick={() => handleNav('#services')}>
+              <FooterLink key={s.title} href="/services">
                 {s.title}
               </FooterLink>
             ))}
@@ -162,11 +159,11 @@ export function Footer() {
 
           {/* Company */}
           <FooterCol title="Company">
-            <FooterLink onClick={() => handleNav('#about')}>About Us</FooterLink>
-            <FooterLink onClick={() => handleNav('#projects')}>Our Work</FooterLink>
-            <FooterLink onClick={() => handleNav('#process')}>Our Process</FooterLink>
-            <FooterLink onClick={() => handleNav('#testimonials')}>Testimonials</FooterLink>
-            <FooterLink onClick={() => handleNav('#contact')}>Contact</FooterLink>
+            <FooterLink href="/about">About Us</FooterLink>
+            <FooterLink href="/projects">Our Work</FooterLink>
+            <FooterLink href="/#process">Our Process</FooterLink>
+            <FooterLink href="/#testimonials">Testimonials</FooterLink>
+            <FooterLink href="#contact">Contact</FooterLink>
           </FooterCol>
         </div>
 
@@ -289,19 +286,24 @@ function FooterCol({ title, children }: { title: string; children: React.ReactNo
 
 function FooterLink({
   children,
-  onClick,
+  href,
 }: {
   children: React.ReactNode;
-  onClick: () => void;
+  href: string;
 }) {
   return (
     <li>
-      <button
-        onClick={onClick}
+      <a
+        href={href}
+        onClick={(event) => {
+          if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+          event.preventDefault();
+          navigateTo(href);
+        }}
         className="text-sm text-silver-300 transition-colors hover:text-electric-300"
       >
         {children}
-      </button>
+      </a>
     </li>
   );
 }

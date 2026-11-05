@@ -39,13 +39,25 @@ function useHashRoute(): Route {
   return route;
 }
 
+function usePathname() {
+  const [pathname, setPathname] = useState(() => window.location.pathname.replace(/\/+$/, '') || '/');
+
+  useEffect(() => {
+    const onPopState = () => setPathname(window.location.pathname.replace(/\/+$/, '') || '/');
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
+  }, []);
+
+  return pathname;
+}
+
 function App() {
   const route = useHashRoute();
+  const pathname = usePathname();
   const { session, loading } = useAuth();
 
   const goSite = () => {
-    window.location.hash = '';
-    window.scrollTo({ top: 0 });
+    window.location.href = '/';
   };
 
   if (route === 'admin') {
@@ -70,73 +82,20 @@ function App() {
       <BackgroundFX />
       <Navbar />
       <main>
-        {/* 1. Hero — Full-bleed midnight with ambient glow */}
-        <Hero />
+        {pathname === '/about' ? (
+          <AboutPage />
+        ) : pathname === '/services' ? (
+          <ServicesPage />
+        ) : pathname === '/projects' ? (
+          <ProjectsPage />
+        ) : (
+          <HomePage />
+        )}
 
-        {/* 2. Trust Ticker — Immediately below hero */}
-        <TrustTicker />
-
-        {/* 3. Interactive Bento-Grid Services — Slate tone */}
-        <div className="section-tone-slate">
-          <Services />
-        </div>
-
-        {/* Results & Impact — grounded in existing client testimonials */}
-        <ResultsImpact />
-
-        <GlowDivider accent="blue" />
-
-        {/* Projects Portfolio — Midnight */}
         <div className="section-tone-midnight">
-          <Projects />
+          <GetAQuote sourcePage={pathname} />
         </div>
-
-        <GlowDivider accent="blue" />
-
-        {/* About — Midnight with ambient light */}
-        <div className="section-tone-midnight">
-          <About />
-        </div>
-
-        <GlowDivider accent="ember" />
-
-        {/* Why Choose Us — Elevated */}
-        <div className="section-tone-elevated">
-          <WhyChooseUs />
-        </div>
-
-        <GlowDivider accent="blue" />
-
-        {/* Our Process — Slate */}
-        <div className="section-tone-slate">
-          <Process />
-        </div>
-
-        <GlowDivider accent="ember" />
-
-        {/* Technologies — Elevated */}
-        <div className="section-tone-elevated">
-          <Technologies />
-        </div>
-
-        <GlowDivider accent="ember" />
-
-        {/* Testimonials — Slate */}
-        <div className="section-tone-slate">
-          <Testimonials />
-        </div>
-
-        <GlowDivider accent="blue" />
-
-        {/* Get a Quote — Midnight */}
-        <div className="section-tone-midnight">
-          <GetAQuote />
-        </div>
-
-        {/* CTA — Full ambient section */}
         <CTA />
-
-        {/* Contact — Elevated */}
         <div className="section-tone-elevated">
           <Contact />
         </div>
@@ -146,6 +105,78 @@ function App() {
       {/* hidden anchor keeps admin route reachable */}
       <span id="admin" className="hidden" aria-hidden />
     </div>
+  );
+}
+
+function HomePage() {
+  return (
+    <>
+      <Hero />
+      <TrustTicker />
+      <div className="section-tone-slate"><Services /></div>
+      <ResultsImpact />
+      <GlowDivider accent="blue" />
+      <div className="section-tone-midnight"><Projects /></div>
+      <GlowDivider accent="blue" />
+      <div className="section-tone-midnight"><About /></div>
+      <GlowDivider accent="ember" />
+      <div className="section-tone-elevated"><WhyChooseUs /></div>
+      <GlowDivider accent="blue" />
+      <div className="section-tone-slate"><Process /></div>
+      <GlowDivider accent="ember" />
+      <div className="section-tone-elevated"><Technologies /></div>
+      <GlowDivider accent="ember" />
+      <div className="section-tone-slate"><Testimonials /></div>
+    </>
+  );
+}
+
+function AboutPage() {
+  return (
+    <>
+      <RouteHeading title="About HM Technologies" />
+      <div className="section-tone-midnight pt-20"><About /></div>
+      <div className="section-tone-elevated"><WhyChooseUs /></div>
+      <div className="section-tone-slate"><Process /></div>
+      <div className="section-tone-elevated"><Technologies /></div>
+      <div className="section-tone-slate"><Testimonials /></div>
+    </>
+  );
+}
+
+function ServicesPage() {
+  return (
+    <>
+      <RouteHeading title="Our Services" />
+      <div className="section-tone-slate pt-20"><Services /></div>
+      <ResultsImpact />
+      <div className="section-tone-elevated"><Technologies /></div>
+      <div className="section-tone-slate"><Process /></div>
+      <div className="section-tone-midnight"><Testimonials /></div>
+    </>
+  );
+}
+
+function ProjectsPage() {
+  return (
+    <>
+      <RouteHeading title="Selected Projects" />
+      <ResultsImpact />
+      <div className="section-tone-midnight pt-20"><Projects /></div>
+      <div className="section-tone-slate"><Testimonials /></div>
+    </>
+  );
+}
+
+function RouteHeading({ title }: { title: string }) {
+  return (
+    <section className="section-padding pb-0 pt-36">
+      <div className="mx-auto max-w-7xl">
+        <h1 className="font-display text-4xl font-extrabold leading-tight text-white sm:text-5xl">
+          {title}
+        </h1>
+      </div>
+    </section>
   );
 }
 
