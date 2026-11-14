@@ -46,8 +46,8 @@ export function Projects() {
       <div ref={ref} className="mx-auto max-w-7xl">
         <SectionHeading
           eyebrow="Portfolio"
-          title="Featured Projects"
-          description="A selection of solutions we've shipped across web, software, data, and marketing."
+          title="Featured Projects &amp; Case Studies"
+          description="A selection of custom software, automated systems, data dashboards, and web platforms we've delivered."
         />
 
         {/* Tag Filters */}

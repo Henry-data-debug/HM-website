@@ -113,8 +113,8 @@ export function Footer() {
               Engineering digital excellence — empowering businesses across Africa with innovative
               technology solutions.
             </p>
-            <a href="tel:0791371301" className="mt-4 inline-flex items-center text-sm font-semibold text-electric-300 transition-colors hover:text-electric-200">
-              0791 371 301
+            <a href="tel:+254791371301" className="mt-4 inline-flex items-center text-sm font-semibold text-electric-300 transition-colors hover:text-electric-200">
+              +254 791 371 301
             </a>
             <a href="mailto:info@hmtechnologies.co.ke" className="mt-2 block text-sm text-silver-300 transition-colors hover:text-electric-300">
               info@hmtechnologies.co.ke
@@ -276,9 +276,9 @@ function LegalNoticeDialog({
 function FooterCol({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div>
-      <h2 className="font-display text-sm font-semibold uppercase tracking-wider text-white">
+      <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-white">
         {title}
-      </h2>
+      </h3>
       <ul className="mt-4 space-y-2.5">{children}</ul>
     </div>
   );

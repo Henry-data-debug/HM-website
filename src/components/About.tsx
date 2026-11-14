@@ -69,8 +69,8 @@ export function About() {
           <div className="reveal" style={{ transitionDelay: '100ms' }}>
             <SectionHeading
               eyebrow="Who We Are"
-              title="HM Technologies"
-              description="We are a Nairobi-based technology company helping businesses grow through innovative software, data analytics, automation, and digital marketing."
+              title="About HM Technologies"
+              description="We are a Nairobi-based technology engineering firm helping businesses scale through custom software, automated operational workflows, data analytics, and digital marketing."
               align="left"
             />
 

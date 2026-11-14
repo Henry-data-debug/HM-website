@@ -105,8 +105,8 @@ export function Contact() {
       <div ref={ref} className="mx-auto max-w-7xl">
         <SectionHeading
           eyebrow="Contact"
-          title="Let's Start a Conversation"
-          description="Share your project details and our team will respond within one business day."
+          title="Contact Our Nairobi Engineering Team"
+          description="Share your project requirements and our team will respond with a tailored proposal within one business day."
         />
 
         <div className="mt-14 grid gap-8 lg:grid-cols-5">
@@ -116,13 +116,15 @@ export function Contact() {
               <ContactInfoCard
                 icon={<Phone className="h-5 w-5" />}
                 title="Phone"
-                lines={['0791 371 301']}
+                lines={['+254 791 371 301']}
+                href="tel:+254791371301"
                 accent="blue"
               />
               <ContactInfoCard
                 icon={<Mail className="h-5 w-5" />}
                 title="Email"
                 lines={['info@hmtechnologies.co.ke']}
+                href="mailto:info@hmtechnologies.co.ke"
                 accent="ember"
               />
               <ContactInfoCard
@@ -293,11 +295,13 @@ function ContactInfoCard({
   icon,
   title,
   lines,
+  href,
   accent,
 }: {
   icon: React.ReactNode;
   title: string;
   lines: string[];
+  href?: string;
   accent: 'blue' | 'ember';
 }) {
   return (
@@ -313,11 +317,21 @@ function ContactInfoCard({
         <span className="text-xs font-semibold uppercase tracking-wider text-silver-400">
           {title}
         </span>
-        {lines.map((l) => (
-          <span key={l} className="text-sm font-medium text-white">
-            {l}
-          </span>
-        ))}
+        {lines.map((l) =>
+          href ? (
+            <a
+              key={l}
+              href={href}
+              className="text-sm font-medium text-white transition-colors hover:text-cyan-300"
+            >
+              {l}
+            </a>
+          ) : (
+            <span key={l} className="text-sm font-medium text-white">
+              {l}
+            </span>
+          )
+        )}
       </div>
     </div>
   );

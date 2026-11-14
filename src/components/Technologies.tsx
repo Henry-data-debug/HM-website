@@ -18,8 +18,8 @@ export function Technologies() {
       <div ref={ref} className="mx-auto max-w-5xl">
         <SectionHeading
           eyebrow="Tech Stack"
-          title="Modern Tools & Technologies"
-          description="We build on well-supported, enterprise-grade frameworks and platforms."
+          title="Enterprise Tech Stack &amp; Frameworks"
+          description="We build on well-supported, enterprise-grade frameworks, databases, and cloud platforms."
         />
 
         <div className="mt-12 flex flex-wrap items-center justify-center gap-3">

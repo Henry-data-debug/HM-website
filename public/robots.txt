@@ -1,0 +1,9 @@
+# Robots.txt for HM Technologies
+User-agent: *
+Allow: /
+
+# Disallow internal admin authentication panel from indexation
+Disallow: /#admin
+
+# Sitemaps
+Sitemap: https://hmtechnologies.co.ke/sitemap.xml

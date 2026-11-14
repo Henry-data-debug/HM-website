@@ -11,6 +11,7 @@ import { Process } from './components/Process';
 import { Projects } from './components/Projects';
 import { Technologies } from './components/Technologies';
 import { Testimonials } from './components/Testimonials';
+import { FAQ } from './components/FAQ';
 import { CTA } from './components/CTA';
 import { GetAQuote } from './components/GetAQuote';
 import { Contact } from './components/Contact';
@@ -25,7 +26,7 @@ type Route = 'site' | 'admin';
 
 function useHashRoute(): Route {
   const [route, setRoute] = useState<Route>(() =>
-    window.location.hash.replace('#', '') === 'admin' ? 'admin' : 'site'
+    typeof window !== 'undefined' && window.location.hash.replace('#', '') === 'admin' ? 'admin' : 'site'
   );
 
   useEffect(() => {
@@ -39,8 +40,10 @@ function useHashRoute(): Route {
   return route;
 }
 
-function usePathname() {
-  const [pathname, setPathname] = useState(() => window.location.pathname.replace(/\/+$/, '') || '/');
+function usePathname(initialPath?: string) {
+  const [pathname, setPathname] = useState(() =>
+    initialPath ?? (typeof window !== 'undefined' ? window.location.pathname.replace(/\/+$/, '') || '/' : '/')
+  );
 
   useEffect(() => {
     const onPopState = () => setPathname(window.location.pathname.replace(/\/+$/, '') || '/');
@@ -51,13 +54,19 @@ function usePathname() {
   return pathname;
 }
 
-function App() {
+export interface AppProps {
+  initialPath?: string;
+}
+
+function App({ initialPath }: AppProps = {}) {
   const route = useHashRoute();
-  const pathname = usePathname();
+  const pathname = usePathname(initialPath);
   const { session, loading } = useAuth();
 
   const goSite = () => {
-    window.location.href = '/';
+    if (typeof window !== 'undefined') {
+      window.location.href = '/';
+    }
   };
 
   if (route === 'admin') {
@@ -80,7 +89,7 @@ function App() {
   return (
     <div className="relative min-h-screen overflow-x-hidden text-slate-200">
       <BackgroundFX />
-      <Navbar />
+      <Navbar activePath={pathname} />
       <main>
         {pathname === '/about' ? (
           <AboutPage />
@@ -127,6 +136,8 @@ function HomePage() {
       <div className="section-tone-elevated"><Technologies /></div>
       <GlowDivider accent="ember" />
       <div className="section-tone-slate"><Testimonials /></div>
+      <GlowDivider accent="blue" />
+      <FAQ />
     </>
   );
 }
@@ -134,12 +145,17 @@ function HomePage() {
 function AboutPage() {
   return (
     <>
-      <RouteHeading title="About HM Technologies" />
+      <RouteHeading
+        title="About HM Technologies — Technology & Engineering in Kenya"
+        subtitle="Nairobi-based technology team delivering custom software systems, business automation, and data analytics across East Africa."
+      />
       <div className="section-tone-midnight pt-20"><About /></div>
       <div className="section-tone-elevated"><WhyChooseUs /></div>
       <div className="section-tone-slate"><Process /></div>
       <div className="section-tone-elevated"><Technologies /></div>
       <div className="section-tone-slate"><Testimonials /></div>
+      <GlowDivider accent="blue" />
+      <FAQ />
     </>
   );
 }
@@ -147,12 +163,17 @@ function AboutPage() {
 function ServicesPage() {
   return (
     <>
-      <RouteHeading title="Our Services" />
+      <RouteHeading
+        title="Software Development, Automation & IT Services in Kenya"
+        subtitle="Explore enterprise-grade web development, bespoke software systems, business intelligence, Power BI dashboards, and digital growth."
+      />
       <div className="section-tone-slate pt-20"><Services /></div>
       <ResultsImpact />
       <div className="section-tone-elevated"><Technologies /></div>
       <div className="section-tone-slate"><Process /></div>
       <div className="section-tone-midnight"><Testimonials /></div>
+      <GlowDivider accent="blue" />
+      <FAQ />
     </>
   );
 }
@@ -160,7 +181,10 @@ function ServicesPage() {
 function ProjectsPage() {
   return (
     <>
-      <RouteHeading title="Selected Projects" />
+      <RouteHeading
+        title="Case Studies & Selected Projects — HM Technologies"
+        subtitle="Explore real-world software platforms, automated business pipelines, and data dashboards engineered for measurable business impact in Kenya."
+      />
       <ResultsImpact />
       <div className="section-tone-midnight pt-20"><Projects /></div>
       <div className="section-tone-slate"><Testimonials /></div>
@@ -168,13 +192,18 @@ function ProjectsPage() {
   );
 }
 
-function RouteHeading({ title }: { title: string }) {
+function RouteHeading({ title, subtitle }: { title: string; subtitle?: string }) {
   return (
     <section className="section-padding pb-0 pt-36">
       <div className="mx-auto max-w-7xl">
         <h1 className="font-display text-4xl font-extrabold leading-tight text-white sm:text-5xl">
           {title}
         </h1>
+        {subtitle && (
+          <p className="mt-4 max-w-3xl text-base sm:text-lg leading-relaxed text-slate-300">
+            {subtitle}
+          </p>
+        )}
       </div>
     </section>
   );

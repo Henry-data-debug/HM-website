@@ -31,13 +31,21 @@ export function CTA() {
         </p>
 
         <div className="mt-9 flex flex-col items-center justify-center gap-3.5 sm:flex-row">
-          <button onClick={() => scrollTo('#contact')} className="btn-primary w-full sm:w-auto text-base px-8 py-3.5">
-            Schedule Consultation
-            <ArrowRight className="h-4 w-4" />
-          </button>
-          <button onClick={() => scrollTo('#contact')} className="btn-secondary w-full sm:w-auto text-base px-8 py-3.5">
+          <a
+            href="#contact"
+            onClick={(e) => { e.preventDefault(); scrollTo('#contact'); }}
+            className="btn-primary w-full sm:w-auto text-base px-8 py-3.5"
+          >
+            <span>Schedule Consultation</span>
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </a>
+          <a
+            href="#contact"
+            onClick={(e) => { e.preventDefault(); scrollTo('#contact'); }}
+            className="btn-secondary w-full sm:w-auto text-base px-8 py-3.5"
+          >
             Send a Message
-          </button>
+          </a>
         </div>
 
         <p className="mt-5 text-xs text-slate-400">

@@ -13,8 +13,8 @@ export function Process() {
       <div ref={ref} className="mx-auto max-w-7xl">
         <SectionHeading
           eyebrow="How We Work"
-          title="Our Delivery Process"
-          description="A proven, structured approach from first conversation to post-launch support."
+          title="Our Engineering &amp; Delivery Process"
+          description="A proven, structured approach from first consultation to post-launch support and SLAs."
         />
 
         {/* Timeline */}
@@ -29,14 +29,8 @@ export function Process() {
                 className="reveal flex items-start gap-5 lg:gap-0"
                 style={{ transitionDelay: `${i * 70}ms` }}
               >
-                {/* Left content (even items on desktop) */}
-                <div className={`hidden lg:block lg:w-1/2 ${i % 2 === 0 ? 'lg:pr-12 lg:text-right' : 'lg:order-3 lg:pl-12'}`}>
-                  <div className="bento-card inline-block p-5 text-left">
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-cyan-400">Step {step.number}</span>
-                    <h3 className="mt-1.5 font-display text-lg font-bold text-white">{step.title}</h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-slate-300">{step.description}</p>
-                  </div>
-                </div>
+                {/* Desktop spacer */}
+                <div className={`hidden lg:block lg:w-1/2 ${i % 2 === 0 ? 'lg:order-3' : 'lg:order-1'}`} />
 
                 {/* Center dot / number */}
                 <div className="relative z-10 flex-shrink-0 lg:order-2">
@@ -45,17 +39,14 @@ export function Process() {
                   </span>
                 </div>
 
-                {/* Mobile content / Right spacer */}
-                <div className={`lg:w-1/2 lg:hidden`}>
-                  <div className="bento-card p-5">
+                {/* Content Card (single semantic instance) */}
+                <div className={`w-full lg:w-1/2 ${i % 2 === 0 ? 'lg:order-1 lg:pr-12 lg:text-right' : 'lg:order-3 lg:pl-12 text-left'}`}>
+                  <div className="bento-card inline-block w-full p-5 text-left">
                     <span className="text-[11px] font-bold uppercase tracking-wider text-cyan-400">Step {step.number}</span>
                     <h3 className="mt-1.5 font-display text-lg font-bold text-white">{step.title}</h3>
                     <p className="mt-1.5 text-sm leading-relaxed text-slate-300">{step.description}</p>
                   </div>
                 </div>
-
-                {/* Desktop spacer */}
-                <div className={`hidden lg:block lg:w-1/2 ${i % 2 === 0 ? 'lg:order-3' : ''}`} />
               </div>
             ))}
           </div>

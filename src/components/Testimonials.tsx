@@ -14,8 +14,8 @@ export function Testimonials() {
       <div ref={ref} className="mx-auto max-w-7xl">
         <SectionHeading
           eyebrow="Client Results"
-          title="Trusted by Leading Teams"
-          description="Real feedback from organizations we've helped transform."
+          title="Client Testimonials &amp; Verified Reviews"
+          description="Real feedback from organizations we've helped transform with software and automation."
         />
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

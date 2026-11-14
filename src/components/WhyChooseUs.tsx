@@ -9,9 +9,9 @@ export function WhyChooseUs() {
     <section className="section-padding relative overflow-hidden">
       <div ref={ref} className="mx-auto max-w-7xl">
         <SectionHeading
-          eyebrow="Why Us"
-          title="Built Different"
-          description="Six foundational advantages that make HM Technologies your most reliable digital partner."
+          eyebrow="Why Choose Us"
+          title="Why Choose HM Technologies"
+          description="Six foundational advantages that make HM Technologies your most reliable digital engineering partner in Kenya."
         />
 
         <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

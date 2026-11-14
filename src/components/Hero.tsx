@@ -2,10 +2,26 @@ import { useEffect, useState } from 'react';
 import { ArrowRight, MapPin, Wifi, ChevronDown, CheckCircle2, ShieldCheck, Zap } from 'lucide-react';
 
 const heroSlides = [
-  { label: 'Software & Web', src: '/hero/software-web.jpg' },
-  { label: 'Data & Analytics', src: '/hero/analytics.jpg' },
-  { label: 'Cloud & Systems', src: '/hero/cloud-systems.jpg' },
-  { label: 'Digital Growth', src: '/hero/digital-growth.jpg' },
+  {
+    label: 'Software & Web',
+    src: '/hero/software-web.webp',
+    alt: 'Custom software and web application development workspace at HM Technologies Nairobi',
+  },
+  {
+    label: 'Data & Analytics',
+    src: '/hero/analytics.webp',
+    alt: 'Data analytics, business intelligence dashboards and operational performance metrics',
+  },
+  {
+    label: 'Cloud & Systems',
+    src: '/hero/cloud-systems.webp',
+    alt: 'Enterprise cloud infrastructure, Azure solutions, and automated workflows',
+  },
+  {
+    label: 'Digital Growth',
+    src: '/hero/digital-growth.webp',
+    alt: 'Digital marketing, SEO optimization, and omnichannel business growth strategies',
+  },
 ];
 
 export function Hero() {
@@ -36,12 +52,14 @@ export function Hero() {
           <img
             key={slide.src}
             src={slide.src}
-            alt=""
-            aria-hidden="true"
+            alt={slide.alt}
+            width={1800}
+            height={1200}
             className={`absolute inset-0 h-full w-full scale-[1.05] object-cover object-center blur-[2px] transition-[opacity,transform] duration-[1800ms] ease-in-out ${
               activeSlide === index ? 'scale-100 opacity-40' : 'scale-[1.04] opacity-0'
             }`}
             loading={index === 0 ? 'eager' : 'lazy'}
+            fetchPriority={index === 0 ? 'high' : undefined}
           />
         ))}
         <div className="absolute -top-[15%] left-1/2 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-gradient-to-b from-electric-500/20 via-cyan-500/10 to-transparent blur-3xl" />
@@ -79,75 +97,73 @@ export function Hero() {
       <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center px-5 text-center lg:px-8">
 
         <div className="eyebrow inline-flex items-center gap-2">
-            <span className="relative flex h-2 w-2">
+            <span className="relative flex h-2 w-2" aria-hidden="true">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-500" />
             </span>
-            Enterprise Digital Engineering
+            Enterprise Digital Engineering · Nairobi, Kenya
         </div>
 
         <div className="flex flex-wrap items-center justify-center gap-2.5">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-4 py-1.5 text-xs font-medium text-slate-300 backdrop-blur-md">
-            <MapPin className="h-3.5 w-3.5 text-electric-400" />
+            <MapPin className="h-3.5 w-3.5 text-electric-400" aria-hidden="true" />
             Nairobi, Kenya
           </span>
           <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-4 py-1.5 text-xs font-medium text-slate-300 backdrop-blur-md">
-            <Wifi className="h-3.5 w-3.5 text-ember-400" />
+            <Wifi className="h-3.5 w-3.5 text-ember-400" aria-hidden="true" />
             Global Online Delivery
           </span>
         </div>
 
-        {/* Fluid Bold Headline */}
-        <h1 className="font-display font-extrabold text-white">
-          Engineering Digital Excellence
-        </h1>
-
-        <h2 className="mt-4 font-display text-4xl font-extrabold tracking-tight text-white sm:text-6xl lg:text-7xl xl:text-[5rem] leading-[1.08]">
-          Automating Operations.{' '}
+        {/* Strict Single H1 with Primary Commercial Intent */}
+        <h1 className="mt-4 font-display text-4xl font-extrabold tracking-tight text-white sm:text-6xl lg:text-7xl xl:text-[4.75rem] leading-[1.08]">
+          Custom Software Development,{' '}
           <span className="block text-gradient mt-1 sm:mt-2">
-            Building High-Scale Software.
+            Workflow Automation
           </span>
           <span className="block text-gradient-cyan mt-1 sm:mt-2">
-            Driving Data-Led Growth.
+            &amp; Data Analytics in Kenya
           </span>
-        </h2>
+        </h1>
 
         {/* Outcome-focused subheadline */}
         <p className="hero-description text-slate-300">
-          We help enterprises and growing companies build resilient web platforms,
-          custom business automation pipelines, and high-converting systems engineered for measurable growth.
+          HM Technologies empowers businesses in Nairobi, Kenya and worldwide with high-scale software systems,
+          automated business pipelines, and conversion-engineered digital platforms built for measurable growth.
         </p>
 
-        {/* Action buttons + Micro-trust */}
+        {/* Action buttons + Micro-trust with crawlable internal links */}
         <div className="mt-10 flex flex-col items-center justify-center gap-4 w-full sm:w-auto">
           <div className="flex flex-col sm:flex-row items-center gap-3.5 w-full sm:w-auto">
-            <button
-              onClick={() => scrollTo('#contact')}
+            <a
+              href="#contact"
+              onClick={(e) => { e.preventDefault(); scrollTo('#contact'); }}
               className="btn-primary w-full sm:w-auto text-base px-8 py-3.5 shadow-glow"
             >
               <span>Schedule Consultation</span>
-              <ArrowRight className="h-4 w-4" />
-            </button>
-            <button
-              onClick={() => scrollTo('#services')}
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </a>
+            <a
+              href="#services"
+              onClick={(e) => { e.preventDefault(); scrollTo('#services'); }}
               className="btn-secondary w-full sm:w-auto text-base px-8 py-3.5"
             >
               Explore Solutions
-            </button>
+            </a>
           </div>
 
           {/* Micro-trust indicators */}
           <div className="mt-2 flex flex-wrap items-center justify-center gap-4 text-xs font-medium text-slate-400 sm:gap-6">
             <span className="inline-flex items-center gap-1.5 text-slate-300">
-              <CheckCircle2 className="h-4 w-4 text-cyan-400" />
+              <CheckCircle2 className="h-4 w-4 text-cyan-400" aria-hidden="true" />
               Response within 2 hours
             </span>
             <span className="inline-flex items-center gap-1.5 text-slate-300">
-              <ShieldCheck className="h-4 w-4 text-electric-400" />
+              <ShieldCheck className="h-4 w-4 text-electric-400" aria-hidden="true" />
               Direct access to lead engineers
             </span>
             <span className="inline-flex items-center gap-1.5 text-slate-300">
-              <Zap className="h-4 w-4 text-ember-400" />
+              <Zap className="h-4 w-4 text-ember-400" aria-hidden="true" />
               Transparent KSh proposals
             </span>
           </div>
@@ -173,14 +189,15 @@ export function Hero() {
         </div>
 
         {/* Scroll cue */}
-        <button
-          onClick={() => scrollTo('#services')}
-          aria-label="Scroll down"
+        <a
+          href="#services"
+          onClick={(e) => { e.preventDefault(); scrollTo('#services'); }}
+          aria-label="Scroll to explore services"
           className="mt-10 flex flex-col items-center gap-1 text-slate-500 transition-colors hover:text-cyan-400"
         >
           <span className="text-[10px] font-semibold uppercase tracking-widest text-slate-400">Scroll to Explore</span>
-          <ChevronDown className="h-4 w-4 animate-bounce text-slate-400" />
-        </button>
+          <ChevronDown className="h-4 w-4 animate-bounce text-slate-400" aria-hidden="true" />
+        </a>
       </div>
     </section>
   );

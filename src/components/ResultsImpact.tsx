@@ -36,10 +36,10 @@ export function ResultsImpact() {
         <div className="reveal max-w-2xl">
           <span className="text-xs font-bold uppercase tracking-[0.16em] text-cyan-300">Results &amp; Impact</span>
           <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-white sm:text-4xl">
-            Better systems. Measurable change.
+            Proven Client Outcomes &amp; Measurable Business Impact
           </h2>
           <p className="mt-4 text-base leading-relaxed text-slate-300">
-            Client outcomes show what focused engineering can change across day-to-day operations and growth.
+            Client outcomes demonstrate the measurable efficiency, uptime, and revenue gains achieved through our engineering and automation.
           </p>
         </div>
 
@@ -62,7 +62,7 @@ export function ResultsImpact() {
                       <Icon className="h-5 w-5" />
                     </span>
                     <div>
-                      <p className="text-sm font-bold text-white">{item.client}</p>
+                      <h3 className="text-sm font-bold text-white">{item.client}</h3>
                       <p className="text-xs text-slate-400">{item.area}</p>
                     </div>
                   </div>

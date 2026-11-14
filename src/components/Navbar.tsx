@@ -3,10 +3,11 @@ import { Menu, X, ArrowRight, Shield } from 'lucide-react';
 import { navLinks } from '../data/content';
 import { navigateTo } from '../lib/navigation';
 
-export function Navbar() {
+export function Navbar({ activePath }: { activePath?: string } = {}) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const currentPath = window.location.pathname.replace(/\/+$/, '') || '/';
+  const currentPath =
+    activePath ?? (typeof window !== 'undefined' ? window.location.pathname.replace(/\/+$/, '') || '/' : '/');
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);

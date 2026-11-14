@@ -131,8 +131,8 @@ export function GetAQuote({ sourcePage }: { sourcePage: string }) {
       <div ref={ref} className="mx-auto max-w-7xl">
         <SectionHeading
           eyebrow="Pricing"
-          title="Get a Custom Quote"
-          description="Tell us about your project and we'll prepare a tailored proposal with transparent pricing — no obligations."
+          title="Request a Tailored Project Proposal"
+          description="Tell us about your project and we'll prepare an itemized proposal with transparent pricing and clear delivery milestones — no obligations."
         />
 
         <div className="mt-14 grid gap-8 lg:grid-cols-5">

@@ -40,7 +40,7 @@ export function Services() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <SectionHeading
             eyebrow="Solutions & Capabilities"
-            title="Interactive Bento Architecture"
+            title="Software, Automation & Growth Services"
             description="Enterprise-grade technology solutions designed to automate workflows, accelerate revenue, and build unbreakable digital infrastructure."
             align="left"
           />
@@ -89,13 +89,14 @@ export function Services() {
                       </h3>
                     </div>
                   </div>
-                  <button
-                    onClick={() => scrollToQuote('Business Automation')}
+                  <a
+                    href="#quote"
+                    onClick={(e) => { e.preventDefault(); scrollToQuote('Business Automation'); }}
                     className="hidden sm:flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.05] px-3.5 py-1.5 text-xs font-medium text-slate-300 transition-colors hover:border-cyan-400 hover:text-white"
                   >
                     <span>Request Proposal</span>
-                    <ArrowUpRight className="h-3.5 w-3.5" />
-                  </button>
+                    <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+                  </a>
                 </div>
 
                 <p className="mt-5 text-sm leading-relaxed text-slate-300 max-w-2xl">
@@ -146,12 +147,13 @@ export function Services() {
                     </span>
                   ))}
                 </div>
-                <button
-                  onClick={() => scrollToQuote('Business Automation')}
+                <a
+                  href="#quote"
+                  onClick={(e) => { e.preventDefault(); scrollToQuote('Business Automation'); }}
                   className="inline-flex items-center gap-1.5 text-xs font-semibold text-cyan-400 hover:text-cyan-300"
                 >
-                  Configure Automation <ArrowRight className="h-3.5 w-3.5" />
-                </button>
+                  Configure Automation <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                </a>
               </div>
             </div>
           )}
@@ -194,12 +196,13 @@ export function Services() {
 
               <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-white/[0.08] pt-5">
                 <span className="min-w-0 text-xs font-medium text-slate-400">99.9% Uptime Guarantee</span>
-                <button
-                  onClick={() => scrollToQuote('Website Development')}
+                <a
+                  href="#quote"
+                  onClick={(e) => { e.preventDefault(); scrollToQuote('Website Development'); }}
                   className="inline-flex shrink-0 items-center gap-1.5 text-xs font-semibold text-cyan-400 hover:text-cyan-300"
                 >
-                  Build Software <ArrowRight className="h-3.5 w-3.5" />
-                </button>
+                  Build Software <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                </a>
               </div>
             </div>
           )}
@@ -244,12 +247,13 @@ export function Services() {
 
               <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-white/[0.08] pt-5">
                 <span className="min-w-0 text-xs font-medium text-slate-400">Dashboards & Forecasting</span>
-                <button
-                  onClick={() => scrollToQuote('Data Analytics & Business Intelligence')}
+                <a
+                  href="#quote"
+                  onClick={(e) => { e.preventDefault(); scrollToQuote('Data Analytics & Business Intelligence'); }}
                   className="inline-flex shrink-0 items-center gap-1.5 text-xs font-semibold text-ember-400 hover:text-ember-300"
                 >
-                  View Dashboards <ArrowRight className="h-3.5 w-3.5" />
-                </button>
+                  View Dashboards <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                </a>
               </div>
             </div>
           )}
@@ -291,12 +295,13 @@ export function Services() {
 
               <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-white/[0.08] pt-5">
                 <span className="min-w-0 text-xs font-medium text-slate-400">High-Converting Funnels</span>
-                <button
-                  onClick={() => scrollToQuote('Digital Marketing')}
+                <a
+                  href="#quote"
+                  onClick={(e) => { e.preventDefault(); scrollToQuote('Digital Marketing'); }}
                   className="inline-flex shrink-0 items-center gap-1.5 text-xs font-semibold text-cyan-400 hover:text-cyan-300"
                 >
-                  Scale Acquisition <ArrowRight className="h-3.5 w-3.5" />
-                </button>
+                  Scale Acquisition <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                </a>
               </div>
             </div>
           )}
@@ -338,12 +343,13 @@ export function Services() {
 
               <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-white/[0.08] pt-5">
                 <span className="min-w-0 text-xs font-medium text-slate-400">SLA-Backed Support</span>
-                <button
-                  onClick={() => scrollToQuote('IT Support')}
+                <a
+                  href="#quote"
+                  onClick={(e) => { e.preventDefault(); scrollToQuote('IT Support'); }}
                   className="inline-flex shrink-0 items-center gap-1.5 text-xs font-semibold text-indigo-300 hover:text-indigo-200"
                 >
-                  Explore Support <ArrowRight className="h-3.5 w-3.5" />
-                </button>
+                  Explore Support <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                </a>
               </div>
             </div>
           )}
