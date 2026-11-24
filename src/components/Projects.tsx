@@ -101,8 +101,16 @@ export function Projects({ initialSlug }: ProjectsProps) {
           ))}
         </div>
 
-        {/* Clean, Scannable Projects Grid */}
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Clean, Scannable Projects Grid with adaptive centering to eliminate dead space */}
+        <div
+          className={`mt-12 ${
+            filtered.length === 1
+              ? 'mx-auto max-w-xl'
+              : filtered.length === 2
+              ? 'mx-auto max-w-4xl grid sm:grid-cols-2 gap-6'
+              : 'grid gap-6 sm:grid-cols-2 lg:grid-cols-3'
+          }`}
+        >
           {filtered.map((study, i) => (
             <article
               key={study.slug}

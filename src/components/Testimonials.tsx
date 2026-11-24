@@ -57,6 +57,25 @@ export function Testimonials() {
             </article>
           ))}
         </div>
+
+        {/* Verified Rating & Trust Banner to eliminate dead space */}
+        <div className="reveal mt-12 rounded-2xl border border-slate-200/90 bg-slate-50/70 p-5 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left shadow-2xs">
+          <div className="flex items-center gap-3.5">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber-50 border border-amber-200 text-amber-600 font-bold text-sm shadow-xs">
+              ★ 5.0
+            </span>
+            <div>
+              <p className="text-xs font-bold text-slate-900">100% Milestone Delivery on SLA Agreements</p>
+              <p className="text-[11px] text-slate-500 mt-0.5">Verified reviews across logistics, retail e-commerce, and healthcare clients in Kenya.</p>
+            </div>
+          </div>
+          <a
+            href="#contact"
+            className="shrink-0 text-xs font-bold text-indigo-600 hover:text-indigo-700 underline underline-offset-4"
+          >
+            Start Your Project Consultation &rarr;
+          </a>
+        </div>
       </div>
     </section>
   );

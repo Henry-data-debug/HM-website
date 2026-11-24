@@ -235,9 +235,9 @@ export function Services() {
             </div>
           )}
 
-          {/* Card 3: Data Analytics & Business Intelligence (4 Columns on LG) */}
+          {/* Card 3: Data Analytics & Business Intelligence (4 Columns on LG when all, 6 Columns when data) */}
           {(activeTab === 'all' || activeTab === 'data') && (
-            <div className="reveal bento-card-light p-6 sm:p-7 lg:col-span-4 group flex flex-col justify-between">
+            <div className={`reveal bento-card-light p-6 sm:p-7 ${activeTab === 'data' ? 'lg:col-span-6' : 'lg:col-span-4'} group flex flex-col justify-between`}>
               <div>
                 <div className="flex items-center justify-between">
                   <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-sky-50 border border-sky-200 text-sky-600 shadow-sm">
@@ -286,9 +286,9 @@ export function Services() {
             </div>
           )}
 
-          {/* Card 4: Performance Digital Marketing & SEO (4 Columns on LG) */}
+          {/* Card 4: Performance Digital Marketing & SEO (4 Columns on LG when all, 8 Columns centered when growth) */}
           {(activeTab === 'all' || activeTab === 'growth') && (
-            <div className="reveal bento-card-light p-6 sm:p-7 lg:col-span-4 group flex flex-col justify-between">
+            <div className={`reveal bento-card-light p-6 sm:p-7 ${activeTab === 'growth' ? 'lg:col-span-8 lg:col-start-3' : 'lg:col-span-4'} group flex flex-col justify-between`}>
               <div>
                 <div className="flex items-center justify-between">
                   <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-amber-50 border border-amber-200 text-amber-600 shadow-sm">
@@ -332,9 +332,9 @@ export function Services() {
             </div>
           )}
 
-          {/* Card 5: Enterprise Cloud & IT Support (4 Columns on LG) */}
+          {/* Card 5: Enterprise Cloud & IT Support (4 Columns on LG when all, 6 Columns when data) */}
           {(activeTab === 'all' || activeTab === 'data') && (
-            <div className="reveal bento-card-light p-6 sm:p-7 lg:col-span-4 group flex flex-col justify-between">
+            <div className={`reveal bento-card-light p-6 sm:p-7 ${activeTab === 'data' ? 'lg:col-span-6' : 'lg:col-span-4'} group flex flex-col justify-between`}>
               <div>
                 <div className="flex items-center justify-between">
                   <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-indigo-50 border border-indigo-200 text-indigo-600 shadow-sm">

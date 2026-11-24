@@ -172,11 +172,11 @@ function ProjectsPage({ pathname }: { pathname?: string }) {
   return (
     <>
       <RouteHeading
-        title="Case Studies & Selected Projects — HM Technologies"
+        title="Case Studies &amp; Selected Projects — HM Technologies"
         subtitle="Explore real-world software platforms, automated business pipelines, and data dashboards engineered for measurable business impact in Kenya."
       />
-      <ResultsImpact />
       <Projects initialSlug={slug} />
+      <ResultsImpact />
       <Testimonials />
     </>
   );

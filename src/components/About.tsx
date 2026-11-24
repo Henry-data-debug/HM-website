@@ -124,6 +124,42 @@ export function About() {
                 accent="emerald"
               />
             </div>
+
+            {/* Core Engineering Commitments to balance column height & eliminate dead space */}
+            <div className="mt-7 rounded-2xl border border-slate-200/90 bg-slate-50/70 p-5 shadow-2xs">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
+                Core Engineering Commitments
+              </span>
+              <div className="mt-3 grid gap-3 sm:grid-cols-3">
+                <div className="flex items-start gap-2">
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-700 text-[10px] font-bold">
+                    ✓
+                  </span>
+                  <div>
+                    <h4 className="text-xs font-bold text-slate-900">Direct Senior Delivery</h4>
+                    <p className="text-[11px] text-slate-500 mt-0.5">Lead engineer oversight on every line of code.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-indigo-700 text-[10px] font-bold">
+                    ✓
+                  </span>
+                  <div>
+                    <h4 className="text-xs font-bold text-slate-900">99.98% Platform SLA</h4>
+                    <p className="text-[11px] text-slate-500 mt-0.5">Proactive monitoring &amp; cloud failover architecture.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-sky-100 text-sky-700 text-[10px] font-bold">
+                    ✓
+                  </span>
+                  <div>
+                    <h4 className="text-xs font-bold text-slate-900">Transparent Sprints</h4>
+                    <p className="text-[11px] text-slate-500 mt-0.5">Bi-weekly live staging demos &amp; clear milestone billing.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
