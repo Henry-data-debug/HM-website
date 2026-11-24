@@ -9,15 +9,26 @@ import {
   CheckCircle2,
   Loader2,
   Mail,
+  MessageSquare,
+  MapPin,
 } from 'lucide-react';
 import { navLinks, services } from '../data/content';
 import { supabase } from '../lib/supabase';
 import { navigateTo } from '../lib/navigation';
 
+const scopeOptions = [
+  'Workflow, Zoho & M-Pesa Integration',
+  'Custom Websites & Web Applications',
+  'Data Analytics & BI Dashboards',
+  'Technical SEO & Growth Marketing',
+  'Enterprise Cloud & Azure Support',
+];
+
 export function Footer() {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [legalNotice, setLegalNotice] = useState<'privacy' | 'cookies' | null>(null);
+  const [selectedScope, setSelectedScope] = useState(scopeOptions[0]);
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -47,6 +58,62 @@ export function Footer() {
   return (
     <footer className="relative border-t border-white/10 bg-[#090D16] pt-16">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
+        {/* Interactive Scope & Dynamic WhatsApp Consultation */}
+        <div className="mb-14 rounded-3xl border border-white/10 bg-white/[0.03] p-6 sm:p-8 backdrop-blur-md">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/10 pb-5">
+            <div>
+              <span className="text-xs font-bold uppercase tracking-wider text-cyan-400">
+                Project Scope &amp; Instant Consultation
+              </span>
+              <h3 className="mt-1 font-display text-xl sm:text-2xl font-bold text-white">
+                Select Your Primary Focus Area
+              </h3>
+              <p className="mt-1 text-xs text-slate-300">
+                Click a focus area below to initiate a pre-filled direct WhatsApp discussion with our lead engineers.
+              </p>
+            </div>
+            <div className="flex items-center gap-2 text-xs text-slate-400">
+              <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span>Nairobi Engineering Team Online</span>
+            </div>
+          </div>
+
+          <div className="mt-5 flex flex-wrap gap-2.5">
+            {scopeOptions.map((scope) => (
+              <button
+                key={scope}
+                type="button"
+                onClick={() => setSelectedScope(scope)}
+                className={`rounded-full px-4 py-2 text-xs font-semibold transition-all ${
+                  selectedScope === scope
+                    ? 'bg-emerald-500 text-slate-950 font-bold shadow-md shadow-emerald-500/20'
+                    : 'border border-white/10 bg-white/[0.04] text-slate-300 hover:border-emerald-500/40 hover:text-white'
+                }`}
+              >
+                {scope}
+              </button>
+            ))}
+          </div>
+
+          <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-white/[0.06]">
+            <div className="text-xs text-slate-400">
+              Selected Scope: <span className="font-semibold text-white">{selectedScope}</span>
+            </div>
+            <a
+              href={`https://wa.me/254791371301?text=${encodeURIComponent(
+                `Hello HM Technologies, I would like to consult on: ${selectedScope}.`
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-emerald group w-full sm:w-auto text-xs sm:text-sm px-6 py-3 flex items-center justify-center gap-2"
+            >
+              <MessageSquare className="h-4 w-4" />
+              <span>Message on WhatsApp (+254 791 371 301)</span>
+              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+            </a>
+          </div>
+        </div>
+
         {/* Newsletter banner */}
         <div className="glass-strong mb-14 flex flex-col items-center justify-between gap-6 rounded-3xl p-7 sm:p-9 lg:flex-row">
           <div className="text-center lg:text-left">
@@ -116,9 +183,13 @@ export function Footer() {
             <a href="tel:+254791371301" className="mt-4 inline-flex items-center text-sm font-semibold text-electric-300 transition-colors hover:text-electric-200">
               +254 791 371 301
             </a>
-            <a href="mailto:info@hmtechnologies.co.ke" className="mt-2 block text-sm text-silver-300 transition-colors hover:text-electric-300">
+            <a href="mailto:info@hmtechnologies.co.ke" className="mt-1.5 block text-sm text-silver-300 transition-colors hover:text-electric-300">
               info@hmtechnologies.co.ke
             </a>
+            <p className="mt-2.5 flex items-center gap-1.5 text-xs text-slate-400">
+              <MapPin className="h-3.5 w-3.5 text-cyan-400 shrink-0" />
+              <span>Nairobi, Kenya • Central Business District</span>
+            </p>
             <div className="mt-5 flex gap-2.5">
               {[
                 { icon: Twitter, label: 'Twitter' },
