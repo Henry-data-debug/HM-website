@@ -89,6 +89,96 @@ export const routesSEO: Record<string, RouteSEO> = {
     ogImageAlt: 'Selected projects and client success stories by HM Technologies',
     ogType: 'website',
   },
+  '/projects/mpesa-property-automation': {
+    path: '/projects/mpesa-property-automation',
+    title: 'M-Pesa Property Automation Case Study | HM Technologies',
+    description:
+      'Explore how HM Technologies automated tenant rent collection, utility reconciliations, and Zoho CRM workflows for 400+ properties in Nairobi.',
+    keywords:
+      'M-Pesa property automation, Daraja API integration Nairobi, Zoho CRM property management, rent collection automation Kenya',
+    canonical: `${SITE_URL}/projects/mpesa-property-automation`,
+    ogTitle: 'M-Pesa Property Automation Case Study | HM Technologies',
+    ogDescription:
+      'Explore how HM Technologies automated tenant rent collection, utility reconciliations, and Zoho CRM workflows for 400+ properties in Nairobi.',
+    ogImage: `${SITE_URL}/hero/software-web.webp`,
+    ogImageAlt: 'M-Pesa and Zoho property automation platform case study',
+    ogType: 'article',
+  },
+  '/projects/savannah-retail-ecommerce': {
+    path: '/projects/savannah-retail-ecommerce',
+    title: 'Savannah Retail E-Commerce Case Study | HM Technologies',
+    description:
+      'Discover how HM Technologies engineered a headless Next.js e-commerce store with M-Pesa one-click checkout, doubling client digital sales.',
+    keywords:
+      'Next.js ecommerce Nairobi, M-Pesa checkout integration, headless commerce Kenya, Savannah Retail case study',
+    canonical: `${SITE_URL}/projects/savannah-retail-ecommerce`,
+    ogTitle: 'Savannah Retail E-Commerce Case Study | HM Technologies',
+    ogDescription:
+      'Discover how HM Technologies engineered a headless Next.js e-commerce store with M-Pesa one-click checkout, doubling client digital sales.',
+    ogImage: `${SITE_URL}/hero/software-web.webp`,
+    ogImageAlt: 'Savannah Retail ecommerce store case study',
+    ogType: 'article',
+  },
+  '/projects/highview-erp-system': {
+    path: '/projects/highview-erp-system',
+    title: 'Highview ERP & Fee Automation Case Study | HM Technologies',
+    description:
+      'See how HM Technologies built a modular cloud ERP system centralizing student fee collection and medical records with 98% automation.',
+    keywords:
+      'school ERP system Kenya, fee collection automation M-Pesa, hospital management system Nairobi, Highview case study',
+    canonical: `${SITE_URL}/projects/highview-erp-system`,
+    ogTitle: 'Highview ERP & Fee Automation Case Study | HM Technologies',
+    ogDescription:
+      'See how HM Technologies built a modular cloud ERP system centralizing student fee collection and medical records with 98% automation.',
+    ogImage: `${SITE_URL}/hero/software-web.webp`,
+    ogImageAlt: 'Highview ERP and fee automation case study',
+    ogType: 'article',
+  },
+  '/projects/supply-chain-bi-dashboard': {
+    path: '/projects/supply-chain-bi-dashboard',
+    title: 'Supply Chain BI Dashboard Case Study | HM Technologies',
+    description:
+      'Learn how HM Technologies engineered automated Power BI & Python analytics dashboards, cutting decision turnaround from 15 days to under 1 hour.',
+    keywords:
+      'Power BI supply chain Nairobi, Python ETL dashboards Kenya, logistics analytics, business intelligence Nairobi',
+    canonical: `${SITE_URL}/projects/supply-chain-bi-dashboard`,
+    ogTitle: 'Supply Chain BI Dashboard Case Study | HM Technologies',
+    ogDescription:
+      'Learn how HM Technologies engineered automated Power BI & Python analytics dashboards, cutting decision turnaround from 15 days to under 1 hour.',
+    ogImage: `${SITE_URL}/hero/software-web.webp`,
+    ogImageAlt: 'Supply chain BI dashboard case study',
+    ogType: 'article',
+  },
+  '/projects/aura-wellness-ecommerce': {
+    path: '/projects/aura-wellness-ecommerce',
+    title: 'Aura Wellness E-Commerce Case Study | HM Technologies',
+    description:
+      'How HM Technologies delivered a 3.1x conversion uplift and repeat subscription portal for East Africa’s top wellness nutrition brand.',
+    keywords:
+      'wellness ecommerce Kenya, headless WooCommerce, WhatsApp order assist, Aura nutrition case study',
+    canonical: `${SITE_URL}/projects/aura-wellness-ecommerce`,
+    ogTitle: 'Aura Wellness E-Commerce Case Study | HM Technologies',
+    ogDescription:
+      'How HM Technologies delivered a 3.1x conversion uplift and repeat subscription portal for East Africa’s top wellness nutrition brand.',
+    ogImage: `${SITE_URL}/hero/software-web.webp`,
+    ogImageAlt: 'Aura wellness store case study',
+    ogType: 'article',
+  },
+  '/projects/full-funnel-seo-growth': {
+    path: '/projects/full-funnel-seo-growth',
+    title: 'Full-Funnel Technical SEO Case Study | HM Technologies',
+    description:
+      'How HM Technologies solved client-side rendering with static SSG and engineered Meta Ads funnels delivering a 4.8x campaign ROAS.',
+    keywords:
+      'technical SEO case study Kenya, static pre-rendering SSG, Meta ads performance Nairobi, search engine marketing',
+    canonical: `${SITE_URL}/projects/full-funnel-seo-growth`,
+    ogTitle: 'Full-Funnel Technical SEO Case Study | HM Technologies',
+    ogDescription:
+      'How HM Technologies solved client-side rendering with static SSG and engineered Meta Ads funnels delivering a 4.8x campaign ROAS.',
+    ogImage: `${SITE_URL}/hero/software-web.webp`,
+    ogImageAlt: 'Full funnel SEO and growth case study',
+    ogType: 'article',
+  },
 };
 
 export function generateJsonLd(routePath: string, siteUrl: string = SITE_URL): object {

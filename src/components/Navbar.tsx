@@ -30,7 +30,7 @@ export function Navbar({ activePath }: { activePath?: string } = {}) {
         {/* Desktop links */}
         <ul className="hidden items-center gap-0.5 lg:flex">
           {navLinks.map((link) => {
-            const isActive = link.href === currentPath;
+            const isActive = link.href === currentPath || (link.href !== '/' && currentPath.startsWith(link.href));
             return (
               <li key={link.href}>
                 <a

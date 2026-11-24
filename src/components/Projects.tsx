@@ -1,65 +1,97 @@
-import { useEffect, useRef, useState } from 'react';
-import { ArrowRight, BarChart3, Boxes, ExternalLink, Globe, GraduationCap, Megaphone, ShoppingCart, X } from 'lucide-react';
-import { projects, type ProjectItem } from '../data/content';
+import { useEffect, useState } from 'react';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import {
+  caseStudies,
+  categoryFilterOptions,
+  getProjectBySlug,
+  type CaseStudy,
+  type ProjectCategory,
+} from '../data/projectsData';
+import { ProjectTour } from './ProjectTour';
 import { SectionHeading } from './About';
 import { useRevealGroup } from '../hooks/useRevealGroup';
+import { navigateTo } from '../lib/navigation';
 
-const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-  globe: Globe,
-  cart: ShoppingCart,
-  chart: BarChart3,
-  box: Boxes,
-  school: GraduationCap,
-  megaphone: Megaphone,
-};
+interface ProjectsProps {
+  initialSlug?: string;
+}
 
-const categoryFilters = ['All', 'Web', 'Automation', 'Analytics', 'Software', 'Digital Marketing'];
-
-export function Projects() {
+export function Projects({ initialSlug }: ProjectsProps) {
   const ref = useRevealGroup<HTMLDivElement>();
-  const [activeFilter, setActiveFilter] = useState('All');
-  const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
+  const [activeFilter, setActiveFilter] = useState<ProjectCategory | 'All'>('All');
+  const [selectedSlug, setSelectedSlug] = useState<string | undefined>(initialSlug);
+
+  useEffect(() => {
+    setSelectedSlug(initialSlug);
+  }, [initialSlug]);
+
+  const activeProject: CaseStudy | undefined = selectedSlug ? getProjectBySlug(selectedSlug) : undefined;
 
   const filtered = activeFilter === 'All'
-    ? projects
-    : projects.filter((project) => project.tags.includes(activeFilter));
+    ? caseStudies
+    : caseStudies.filter((project) => project.category === activeFilter);
 
-  const requestWalkthrough = (project: ProjectItem) => {
-    const service = project.category === 'Data Analytics'
-      ? 'Data Analytics & Business Intelligence'
-      : project.category === 'Digital Marketing'
-        ? 'Digital Marketing'
-        : project.category === 'Software'
-          ? 'Software & System Development'
-          : 'Website Development';
-
-    window.dispatchEvent(new CustomEvent('select-service', { detail: service }));
-    setSelectedProject(null);
-    document.querySelector('#quote')?.scrollIntoView({ behavior: 'smooth' });
+  const handleStartTour = (slug: string) => {
+    setSelectedSlug(slug);
+    navigateTo(`/projects/${slug}`);
   };
 
+  const handleBackToProjects = () => {
+    setSelectedSlug(undefined);
+    navigateTo('/projects');
+  };
+
+  const getPillarBadge = (category: ProjectCategory) => {
+    switch (category) {
+      case 'Workflow & M-Pesa Automation':
+        return 'border-emerald-500/30 bg-emerald-500/20 text-emerald-300';
+      case 'Web & E-Commerce':
+        return 'border-indigo-500/30 bg-indigo-500/20 text-indigo-300';
+      case 'Data & BI Analytics':
+        return 'border-sky-500/30 bg-sky-500/20 text-sky-300';
+      case 'SEO & Growth':
+        return 'border-amber-500/30 bg-amber-500/20 text-amber-300';
+      default:
+        return 'border-cyan-500/30 bg-cyan-500/20 text-cyan-300';
+    }
+  };
+
+  // If a specific project is selected, render the guided walkthrough
+  if (activeProject) {
+    return (
+      <section id="project-tour" className="section-padding relative overflow-hidden bg-[#090D16]">
+        <div className="pointer-events-none absolute inset-0 bg-grid-pattern bg-grid opacity-15" />
+        <div className="pointer-events-none absolute top-1/4 left-1/2 -translate-x-1/2 h-[450px] w-[750px] rounded-full bg-cyan-500/10 blur-[130px] -z-10" />
+        <ProjectTour project={activeProject} onBack={handleBackToProjects} />
+      </section>
+    );
+  }
+
+  // Otherwise, render the Projects Showcase Index
   return (
-    <section id="projects" className="section-padding relative overflow-hidden">
-      {/* Ambient */}
-      <div className="pointer-events-none absolute top-1/3 right-0 h-[400px] w-[400px] rounded-full bg-ember-500/[0.06] blur-[100px] -z-10" />
+    <section id="projects" className="section-padding relative overflow-hidden bg-[#0B1120]">
+      {/* Ambient background */}
+      <div className="pointer-events-none absolute top-1/3 right-0 h-[400px] w-[400px] rounded-full bg-cyan-500/[0.06] blur-[120px] -z-10" />
+      <div className="pointer-events-none absolute bottom-10 left-10 h-[300px] w-[300px] rounded-full bg-indigo-500/[0.06] blur-[100px] -z-10" />
 
       <div ref={ref} className="mx-auto max-w-7xl">
         <SectionHeading
-          eyebrow="Portfolio"
-          title="Featured Projects &amp; Case Studies"
-          description="A selection of custom software, automated systems, data dashboards, and web platforms we've delivered."
+          eyebrow="Portfolio &amp; Case Studies"
+          title="Featured Projects &amp; Guided Tours"
+          description="Explore real-world software platforms, automated Daraja M-Pesa workflows, and executive BI dashboards engineered for measurable business impact."
         />
 
-        {/* Tag Filters */}
-        <div className="reveal mt-8 flex flex-wrap items-center justify-center gap-2">
-          {categoryFilters.map((cat) => (
+        {/* Clean Category Filter Pills */}
+        <div className="reveal mt-10 flex flex-wrap items-center justify-center gap-2">
+          {categoryFilterOptions.map((cat) => (
             <button
               key={cat}
+              type="button"
               onClick={() => setActiveFilter(cat)}
-              className={`rounded-full px-4 py-1.5 text-xs font-semibold transition-all ${
+              className={`rounded-full px-4 py-2 text-xs font-semibold transition-all ${
                 activeFilter === cat
-                  ? 'bg-gradient-to-r from-electric-500 to-cyan-500 text-white shadow-md'
-                  : 'border border-white/10 bg-white/[0.03] text-slate-400 hover:text-white hover:border-cyan-500/30'
+                  ? 'bg-gradient-to-r from-cyan-500 to-indigo-600 text-white shadow-md'
+                  : 'border border-white/10 bg-white/[0.03] text-slate-300 hover:text-white hover:border-cyan-500/40'
               }`}
             >
               {cat}
@@ -67,170 +99,74 @@ export function Projects() {
           ))}
         </div>
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {filtered.map((project, i) => {
-            const Icon = iconMap[project.icon] ?? Globe;
-            return (
-              <article
-                key={project.title}
-                className="reveal bento-card group"
-                style={{ transitionDelay: `${i * 80}ms` }}
-              >
-                {/* Colorful project preview with visible sample data */}
-                <div className={`relative h-48 overflow-hidden bg-gradient-to-br ${project.gradient}`}>
-                  <div className="absolute inset-0 bg-grid-pattern bg-grid opacity-20" />
+        {/* Clean, Scannable Projects Grid */}
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {filtered.map((study, i) => (
+            <article
+              key={study.slug}
+              className="reveal rounded-3xl border border-white/10 bg-[#0F172A]/90 overflow-hidden flex flex-col justify-between transition-all duration-300 hover:border-cyan-400/40 hover:-translate-y-1 shadow-xl"
+              style={{ transitionDelay: `${i * 80}ms` }}
+            >
+              <div>
+                {/* Visual Header Banner with Outcomes */}
+                <div className={`relative h-44 overflow-hidden bg-gradient-to-br ${study.gradient} p-5 flex flex-col justify-between`}>
+                  <div className="absolute inset-0 bg-grid-pattern bg-grid opacity-25" />
                   <div className="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-white/15 blur-2xl" />
 
-                  <div className="absolute inset-x-5 bottom-0 top-7 overflow-hidden rounded-t-xl border border-white/20 bg-white/10 p-3 shadow-lg backdrop-blur-md transition-transform duration-500 group-hover:-translate-y-2">
-                    <div className="flex items-center justify-between border-b border-white/15 pb-2">
-                      <div className="flex gap-1.5">
-                        <span className="h-2 w-2 rounded-full bg-white/90" />
-                        <span className="h-2 w-2 rounded-full bg-white/50" />
-                        <span className="h-2 w-2 rounded-full bg-white/30" />
-                      </div>
-                      <span className="text-[9px] font-bold tracking-wide text-white/70 uppercase">Live Preview</span>
-                    </div>
-                    <div className="mt-3 grid grid-cols-[1.1fr_0.9fr] gap-2">
-                      <div className="rounded-lg bg-white/15 p-2">
-                        <div className="text-[9px] font-medium text-white/70">Performance</div>
-                        <div className="mt-1 text-lg font-bold leading-none text-white">
-                          {['98%', '24.8K', '4.9/5', '1,240', '86%', '3.2x'][i] ?? '95%'}
-                        </div>
-                        <div className="mt-2 flex h-7 items-end gap-1">
-                          {[35, 52, 42, 68, 56, 82, 72, 94].map((height, barIndex) => (
-                            <span
-                              key={barIndex}
-                              className="flex-1 rounded-t-sm bg-white/70"
-                              style={{ height: `${height}%` }}
-                            />
-                          ))}
-                        </div>
-                      </div>
-                      <div className="rounded-lg bg-black/10 p-2">
-                        <div className="text-[9px] font-medium text-white/70">Progress</div>
-                        <div className="mt-2 space-y-2">
-                          {[75, 55, 88].map((width, barIndex) => (
-                            <div key={barIndex} className="h-1.5 overflow-hidden rounded-full bg-white/15">
-                              <div className="h-full rounded-full bg-white/75" style={{ width: `${width}%` }} />
-                            </div>
-                          ))}
-                        </div>
-                        <div className="mt-3 text-[9px] font-medium text-white/60">Updated today</div>
-                      </div>
-                    </div>
+                  {/* Top Category Badge */}
+                  <div className="relative z-10 flex items-center justify-between">
+                    <span className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[11px] font-bold uppercase tracking-wider backdrop-blur-md ${getPillarBadge(study.category)}`}>
+                      {study.category}
+                    </span>
+                    <span className="rounded-full bg-black/40 border border-white/10 px-2.5 py-0.5 text-[10px] text-white/80 font-mono">
+                      Case Study
+                    </span>
                   </div>
 
-                  {/* floating icon */}
-                  <span className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-xl bg-white/15 text-white shadow-lg backdrop-blur-md transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">
-                    <Icon className="h-5 w-5" />
-                  </span>
+                  {/* Headline Outcomes */}
+                  <div className="relative z-10 flex flex-wrap gap-1.5">
+                    {study.outcomes.map((outcome) => (
+                      <span
+                        key={outcome}
+                        className="rounded-lg bg-black/50 border border-white/15 px-2.5 py-1 text-[11px] font-semibold text-white backdrop-blur-md flex items-center gap-1.5"
+                      >
+                        <CheckCircle2 className="h-3 w-3 text-emerald-400 shrink-0" />
+                        <span>{outcome}</span>
+                      </span>
+                    ))}
+                  </div>
                 </div>
 
-                {/* Body */}
-                <div className="bg-white/[0.02] p-6">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-cyan-400">
-                    {project.category}
+                {/* Body Content */}
+                <div className="p-6">
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-400 block">
+                    Sector: {study.sector}
                   </span>
-                  <h3 className="mt-2 font-display text-lg font-bold text-white">
-                    {project.title}
+                  <h3 className="mt-2 font-display text-lg sm:text-xl font-bold text-white leading-snug">
+                    {study.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-300">
-                    {project.description}
+                  <p className="mt-3 text-xs leading-relaxed text-slate-300">
+                    {study.summary}
                   </p>
-                  <button
-                    onClick={() => setSelectedProject(project)}
-                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-cyan-400 transition-colors hover:text-cyan-300"
-                  >
-                    View project details
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                  </button>
                 </div>
-              </article>
-            );
-          })}
+              </div>
+
+              {/* Card Footer Action: Start Project Tour */}
+              <div className="p-6 pt-2 border-t border-white/5 flex items-center justify-between">
+                <span className="text-[11px] text-slate-400">5-Card Walkthrough</span>
+                <button
+                  type="button"
+                  onClick={() => handleStartTour(study.slug)}
+                  className="group/btn inline-flex items-center gap-2 rounded-full bg-cyan-500/10 hover:bg-cyan-500 border border-cyan-500/30 hover:border-cyan-500 px-4 py-2 text-xs font-bold text-cyan-300 hover:text-slate-950 transition-all shadow-sm"
+                >
+                  <span>Start Project Tour</span>
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/btn:translate-x-1" />
+                </button>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
-      {selectedProject && (
-        <ProjectDetailsDialog
-          project={selectedProject}
-          onClose={() => setSelectedProject(null)}
-          onWalkthrough={() => requestWalkthrough(selectedProject)}
-        />
-      )}
     </section>
-  );
-}
-
-function ProjectDetailsDialog({
-  project,
-  onClose,
-  onWalkthrough,
-}: {
-  project: ProjectItem;
-  onClose: () => void;
-  onWalkthrough: () => void;
-}) {
-  const dialogRef = useRef<HTMLDialogElement>(null);
-
-  useEffect(() => {
-    const dialog = dialogRef.current;
-    if (!dialog) return;
-    dialog.showModal();
-    return () => {
-      if (dialog.open) dialog.close();
-    };
-  }, []);
-
-  return (
-    <dialog
-      ref={dialogRef}
-      aria-labelledby="project-dialog-title"
-      onCancel={(event) => {
-        event.preventDefault();
-        onClose();
-      }}
-      onClick={(event) => {
-        if (event.target === event.currentTarget) onClose();
-      }}
-      className="m-auto max-h-[85vh] w-[min(42rem,calc(100%-2rem))] overflow-y-auto rounded-3xl border border-white/10 bg-[#101927] p-0 text-left text-slate-200 shadow-2xl backdrop:bg-black/70 backdrop:backdrop-blur-sm"
-    >
-      <div className="relative p-6 sm:p-8">
-        <button
-          type="button"
-          onClick={onClose}
-          aria-label="Close project details"
-          className="absolute right-5 top-5 flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-300 transition-colors hover:bg-white/10 hover:text-white"
-        >
-          <X className="h-4 w-4" />
-        </button>
-        <p className="pr-12 text-xs font-bold uppercase tracking-[0.14em] text-cyan-300">{project.category}</p>
-        <h2 id="project-dialog-title" className="mt-3 pr-10 font-display text-2xl font-bold text-white sm:text-3xl">
-          {project.title}
-        </h2>
-        <p className="mt-4 text-sm leading-relaxed text-slate-300">{project.summary}</p>
-
-        <div className="mt-7 border-t border-white/10 pt-6">
-          <h3 className="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">Example stack</h3>
-          <div className="mt-3 flex flex-wrap gap-2">
-            {project.exampleStack.map((technology) => (
-              <span key={technology} className="rounded-lg border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs font-medium text-slate-200">
-                {technology}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          {project.liveDemoUrl && (
-            <a href={project.liveDemoUrl} target="_blank" rel="noreferrer" className="btn-secondary">
-              Open live demo <ExternalLink className="h-4 w-4" />
-            </a>
-          )}
-          <button type="button" onClick={onWalkthrough} className="btn-primary">
-            Request a walkthrough <ArrowRight className="h-4 w-4" />
-          </button>
-        </div>
-      </div>
-    </dialog>
   );
 }

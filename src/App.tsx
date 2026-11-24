@@ -94,8 +94,8 @@ function App({ initialPath }: AppProps = {}) {
           <AboutPage />
         ) : pathname === '/services' ? (
           <ServicesPage />
-        ) : pathname === '/projects' ? (
-          <ProjectsPage />
+        ) : pathname === '/projects' || pathname.startsWith('/projects/') ? (
+          <ProjectsPage pathname={pathname} />
         ) : (
           <HomePage />
         )}
@@ -169,7 +169,19 @@ function ServicesPage() {
   );
 }
 
-function ProjectsPage() {
+function ProjectsPage({ pathname }: { pathname?: string }) {
+  const slug = pathname && pathname.startsWith('/projects/')
+    ? pathname.replace(/^\/projects\//, '').replace(/\/+$/, '')
+    : undefined;
+
+  if (slug) {
+    return (
+      <div className="pt-24 sm:pt-28">
+        <Projects initialSlug={slug} />
+      </div>
+    );
+  }
+
   return (
     <>
       <RouteHeading
@@ -177,7 +189,7 @@ function ProjectsPage() {
         subtitle="Explore real-world software platforms, automated business pipelines, and data dashboards engineered for measurable business impact in Kenya."
       />
       <ResultsImpact />
-      <div className="section-tone-midnight pt-20"><Projects /></div>
+      <div className="section-tone-midnight pt-20"><Projects initialSlug={slug} /></div>
       <div className="section-tone-slate"><Testimonials /></div>
     </>
   );

@@ -11,6 +11,12 @@ const filesToTest = [
   { file: 'dist/about/index.html', route: '/about' },
   { file: 'dist/services/index.html', route: '/services' },
   { file: 'dist/projects/index.html', route: '/projects' },
+  { file: 'dist/projects/mpesa-property-automation/index.html', route: '/projects/mpesa-property-automation' },
+  { file: 'dist/projects/savannah-retail-ecommerce/index.html', route: '/projects/savannah-retail-ecommerce' },
+  { file: 'dist/projects/highview-erp-system/index.html', route: '/projects/highview-erp-system' },
+  { file: 'dist/projects/supply-chain-bi-dashboard/index.html', route: '/projects/supply-chain-bi-dashboard' },
+  { file: 'dist/projects/aura-wellness-ecommerce/index.html', route: '/projects/aura-wellness-ecommerce' },
+  { file: 'dist/projects/full-funnel-seo-growth/index.html', route: '/projects/full-funnel-seo-growth' },
 ];
 
 let allPassed = true;
