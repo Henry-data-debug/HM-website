@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Phone,
   Mail,
@@ -40,6 +40,21 @@ export function Contact() {
   const [form, setForm] = useState<FormState>(initialForm);
   const [status, setStatus] = useState<Status>('idle');
   const [errorMsg, setErrorMsg] = useState('');
+
+  useEffect(() => {
+    const handleServiceSelect = (e: Event) => {
+      const customEvent = e as CustomEvent<string>;
+      if (customEvent.detail) {
+        setForm((prev) => ({
+          ...prev,
+          service: customEvent.detail,
+          message: prev.message || `I am interested in ${customEvent.detail}. Please provide more information and a proposal.`,
+        }));
+      }
+    };
+    window.addEventListener('select-service', handleServiceSelect);
+    return () => window.removeEventListener('select-service', handleServiceSelect);
+  }, []);
 
   const update =
     (key: keyof FormState) =>
@@ -102,10 +117,11 @@ export function Contact() {
 
   return (
     <section id="contact" className="section-padding relative">
+      <div id="quote" className="sr-only" aria-hidden="true" />
       <div ref={ref} className="mx-auto max-w-7xl">
         <SectionHeading
-          eyebrow="Contact"
-          title="Contact Our Nairobi Engineering Team"
+          eyebrow="Get In Touch"
+          title="Contact Us"
           description="Share your project requirements and our team will respond with a tailored proposal within one business day."
         />
 

@@ -12,7 +12,6 @@ import { Projects } from './components/Projects';
 import { Technologies } from './components/Technologies';
 import { Testimonials } from './components/Testimonials';
 import { CTA } from './components/CTA';
-import { GetAQuote } from './components/GetAQuote';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { AdminLogin } from './components/admin/AdminLogin';
@@ -100,7 +99,6 @@ function App({ initialPath }: AppProps = {}) {
           <HomePage />
         )}
 
-        <GetAQuote sourcePage={pathname} />
         <CTA />
         <div className="section-tone-elevated">
           <Contact />
