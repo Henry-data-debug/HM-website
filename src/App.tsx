@@ -11,7 +11,6 @@ import { Process } from './components/Process';
 import { Projects } from './components/Projects';
 import { Technologies } from './components/Technologies';
 import { Testimonials } from './components/Testimonials';
-import { FAQ } from './components/FAQ';
 import { CTA } from './components/CTA';
 import { GetAQuote } from './components/GetAQuote';
 import { Contact } from './components/Contact';
@@ -134,7 +133,6 @@ function HomePage() {
       <div className="section-tone-elevated"><Technologies /></div>
       <GlowDivider accent="ember" />
       <div className="section-tone-slate"><Testimonials /></div>
-      <FAQ />
     </>
   );
 }
@@ -151,8 +149,6 @@ function AboutPage() {
       <div className="section-tone-slate"><Process /></div>
       <div className="section-tone-elevated"><Technologies /></div>
       <div className="section-tone-slate"><Testimonials /></div>
-      <GlowDivider accent="blue" />
-      <FAQ />
     </>
   );
 }
@@ -169,8 +165,6 @@ function ServicesPage() {
       <div className="section-tone-elevated"><Technologies /></div>
       <div className="section-tone-slate"><Process /></div>
       <div className="section-tone-midnight"><Testimonials /></div>
-      <GlowDivider accent="blue" />
-      <FAQ />
     </>
   );
 }

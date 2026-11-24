@@ -1,5 +1,3 @@
-import { faqItems } from './content';
-
 export interface RouteSEO {
   path: string;
   title: string;
@@ -247,23 +245,6 @@ export function generateJsonLd(routePath: string, siteUrl: string = SITE_URL): o
           name: 'Kenya',
         },
       },
-      // Include FAQPage on landing page and services where FAQs provide context
-      ...(routePath === '/' || routePath === '/services' || routePath === '/about'
-        ? [
-            {
-              '@type': 'FAQPage',
-              '@id': `${currentCanonical}#faq`,
-              mainEntity: faqItems.map((item) => ({
-                '@type': 'Question',
-                name: item.question,
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: item.answer,
-                },
-              })),
-            },
-          ]
-        : []),
     ],
   };
 

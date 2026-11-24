@@ -72,39 +72,6 @@ const routes = [
   },
 ];
 
-const faqItems = [
-  {
-    question: 'What core technology services does HM Technologies provide in Kenya?',
-    answer:
-      'We provide bespoke software and web application development, business workflow automation (including Zoho CRM, Power Automate, and custom REST API integrations), data analytics and business intelligence dashboards (Power BI & Python), digital marketing (SEO and performance paid ads), and enterprise IT infrastructure support.',
-  },
-  {
-    question: 'How much does custom software development or workflow automation cost?',
-    answer:
-      'Project pricing depends on scope, architectural complexity, and third-party integrations. We provide clear, itemized proposals in Kenyan Shillings (KES) or USD with milestone-based billing and zero hidden costs. You can request a tailored quote on our website to receive an exact estimate within one business day.',
-  },
-  {
-    question: 'How long does a typical software or automation project take to deliver?',
-    answer:
-      'Standard business websites and targeted workflow automations are typically delivered within 2 to 4 weeks. Larger custom software systems, school/hospital platforms, and ERP solutions take 6 to 12 weeks. We follow an agile sprint structure so your team reviews working milestones throughout development.',
-  },
-  {
-    question: 'Can you integrate systems with Safaricom M-Pesa, Zoho, or Microsoft 365?',
-    answer:
-      'Yes. We specialize in system integrations across East Africa, including Safaricom M-Pesa Daraja API for automated payments, Zoho CRM and Creator for operations, Microsoft 365/Azure for identity and cloud management, and custom database webhooks.',
-  },
-  {
-    question: 'Do you provide post-launch maintenance, training, and SLAs?',
-    answer:
-      'Every project includes a handover period with documentation, staff training, and post-launch warranty support. We also provide ongoing monthly maintenance agreements covering 99.9% uptime monitoring, regular cloud backups, security patching, and on-demand engineering assistance.',
-  },
-  {
-    question: 'Do you work with organizations outside Nairobi or outside Kenya?',
-    answer:
-      'Yes. While our headquarters are in Nairobi, Kenya, we regularly partner with businesses across East Africa and international clients remotely via structured sprint reviews, transparent project management boards, and virtual consultations.',
-  },
-];
-
 function buildJsonLd(route) {
   const currentCanonical = route.canonical;
 
@@ -259,22 +226,6 @@ function buildJsonLd(route) {
           name: 'Kenya',
         },
       },
-      ...(route.path === '/' || route.path === '/services' || route.path === '/about'
-        ? [
-            {
-              '@type': 'FAQPage',
-              '@id': `${currentCanonical}#faq`,
-              mainEntity: faqItems.map((item) => ({
-                '@type': 'Question',
-                name: item.question,
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: item.answer,
-                },
-              })),
-            },
-          ]
-        : []),
     ],
   };
 }
