@@ -53,7 +53,7 @@ export function ResultsImpact() {
             return (
               <article
                 key={item.client}
-                className="reveal bento-card grid gap-7 p-6 sm:grid-cols-[1fr_auto] sm:p-8"
+                className="reveal rounded-3xl border border-slate-700/80 bg-slate-800/50 backdrop-blur-xl grid gap-7 p-6 sm:grid-cols-[1fr_auto] sm:p-8 hover:border-cyan-500/40 hover:-translate-y-1 transition-all duration-300 shadow-xl"
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
                 <div>

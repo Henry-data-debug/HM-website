@@ -45,7 +45,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="relative border-t border-white/10 bg-navy-950/60 pt-16">
+    <footer className="relative border-t border-white/10 bg-[#090D16] pt-16">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         {/* Newsletter banner */}
         <div className="glass-strong mb-14 flex flex-col items-center justify-between gap-6 rounded-3xl p-7 sm:p-9 lg:flex-row">

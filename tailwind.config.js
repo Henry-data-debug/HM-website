@@ -4,6 +4,11 @@ export default {
   theme: {
     extend: {
       colors: {
+        obsidian: '#090D16',
+        'signal-emerald': '#10B981',
+        'precision-indigo': '#4F46E5',
+        'vibrant-cyan': '#0EA5E9',
+        'warm-amber': '#F59E0B',
         midnight: {
           950: '#060911',
           900: '#0B0F17',
@@ -77,6 +82,9 @@ export default {
         glass: '0 8px 32px 0 rgba(0, 0, 0, 0.45)',
         'glass-hover': '0 20px 50px rgba(0, 102, 255, 0.22)',
         'card-elevated': '0 12px 36px -8px rgba(0,0,0,0.6)',
+        'card-light': '0 1px 3px 0 rgba(0,0,0,0.05), 0 1px 2px -1px rgba(0,0,0,0.05)',
+        'card-light-hover': '0 20px 25px -5px rgba(0,0,0,0.08), 0 8px 10px -6px rgba(0,0,0,0.04)',
+        'card-indigo': '0 20px 40px -15px rgba(79, 70, 229, 0.2)',
       },
       borderRadius: {
         '2xl': '1rem',

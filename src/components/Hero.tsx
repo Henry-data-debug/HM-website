@@ -44,9 +44,9 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="hero relative flex min-h-[92vh] items-center justify-center overflow-hidden bg-[#060911]"
+      className="hero relative flex min-h-[92vh] items-center justify-center overflow-hidden bg-[#090D16]"
     >
-      {/* ── Ambient Radial Lighting & Subtle Mesh ── */}
+      {/* ── Ambient Radial Lighting & Precision Mesh ── */}
       <div className="pointer-events-none absolute inset-0 z-0">
         {heroSlides.map((slide, index) => (
           <img
@@ -62,13 +62,14 @@ export function Hero() {
             fetchPriority={index === 0 ? 'high' : undefined}
           />
         ))}
-        <div className="absolute -top-[15%] left-1/2 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-gradient-to-b from-electric-500/20 via-cyan-500/10 to-transparent blur-3xl" />
-        <div className="absolute top-[35%] -left-[10%] h-[400px] w-[500px] rounded-full bg-indigo-500/15 blur-3xl" />
-        <div className="absolute top-[25%] -right-[10%] h-[450px] w-[500px] rounded-full bg-cyan-500/10 blur-3xl" />
-        {/* Grid pattern overlay */}
-        <div className="absolute inset-0 bg-grid-pattern bg-grid opacity-25" />
-        {/* Bottom gradient fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#060911] via-[#060911]/80 to-transparent" />
+        {/* Subtle radial ambient glow using Precision Indigo #4F46E5 & Cyan #06B6D4 */}
+        <div className="absolute top-1/4 left-1/2 h-[550px] w-[850px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-b from-[#4F46E5]/15 via-[#06B6D4]/12 to-transparent blur-[110px]" />
+        <div className="absolute top-[35%] -left-[10%] h-[400px] w-[500px] rounded-full bg-[#4F46E5]/10 blur-[100px]" />
+        <div className="absolute top-[25%] -right-[10%] h-[450px] w-[500px] rounded-full bg-[#06B6D4]/12 blur-[100px]" />
+        {/* Faint architectural grid pattern overlay */}
+        <div className="absolute inset-0 bg-grid-pattern bg-grid opacity-20" />
+        {/* Bottom gradient fade into light transition */}
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#090D16] via-[#090D16]/80 to-transparent" />
       </div>
 
       {/* Floating particles */}
@@ -96,7 +97,7 @@ export function Hero() {
       {/* ── Main Content ── */}
       <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center px-5 text-center lg:px-8">
 
-        <div className="eyebrow inline-flex items-center gap-2">
+        <div className="eyebrow inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-indigo-300 backdrop-blur-md">
             <span className="relative flex h-2 w-2" aria-hidden="true">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-500" />
@@ -132,16 +133,16 @@ export function Hero() {
           automated business pipelines, and conversion-engineered digital platforms built for measurable growth.
         </p>
 
-        {/* Action buttons + Micro-trust with crawlable internal links */}
+        {/* Action buttons + Micro-trust with crawlable internal links & right-nudging arrow */}
         <div className="mt-10 flex flex-col items-center justify-center gap-4 w-full sm:w-auto">
           <div className="flex flex-col sm:flex-row items-center gap-3.5 w-full sm:w-auto">
             <a
               href="#contact"
               onClick={(e) => { e.preventDefault(); scrollTo('#contact'); }}
-              className="btn-primary w-full sm:w-auto text-base px-8 py-3.5 shadow-glow"
+              className="group btn-primary w-full sm:w-auto text-base px-8 py-3.5 shadow-glow"
             >
               <span>Schedule Consultation</span>
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
             </a>
             <a
               href="#services"

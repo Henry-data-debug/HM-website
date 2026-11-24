@@ -101,9 +101,7 @@ function App({ initialPath }: AppProps = {}) {
           <HomePage />
         )}
 
-        <div className="section-tone-midnight">
-          <GetAQuote sourcePage={pathname} />
-        </div>
+        <GetAQuote sourcePage={pathname} />
         <CTA />
         <div className="section-tone-elevated">
           <Contact />
@@ -122,7 +120,7 @@ function HomePage() {
     <>
       <Hero />
       <TrustTicker />
-      <div className="section-tone-slate"><Services /></div>
+      <Services />
       <ResultsImpact />
       <GlowDivider accent="blue" />
       <div className="section-tone-midnight"><Projects /></div>
@@ -136,7 +134,6 @@ function HomePage() {
       <div className="section-tone-elevated"><Technologies /></div>
       <GlowDivider accent="ember" />
       <div className="section-tone-slate"><Testimonials /></div>
-      <GlowDivider accent="blue" />
       <FAQ />
     </>
   );
@@ -167,7 +164,7 @@ function ServicesPage() {
         title="Software Development, Automation & IT Services in Kenya"
         subtitle="Explore enterprise-grade web development, bespoke software systems, business intelligence, Power BI dashboards, and digital growth."
       />
-      <div className="section-tone-slate pt-20"><Services /></div>
+      <div className="pt-20"><Services /></div>
       <ResultsImpact />
       <div className="section-tone-elevated"><Technologies /></div>
       <div className="section-tone-slate"><Process /></div>

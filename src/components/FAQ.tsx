@@ -13,15 +13,13 @@ export function FAQ() {
   };
 
   return (
-    <section id="faq" className="section-padding relative overflow-hidden bg-[#0A0F1D]">
-      {/* Ambient background glow */}
-      <div className="pointer-events-none absolute left-1/2 top-1/3 -translate-x-1/2 h-80 w-[36rem] rounded-full bg-cyan-500/[0.05] blur-[120px] -z-10" />
-
+    <section id="faq" className="section-padding relative overflow-hidden bg-white text-slate-900 border-t border-slate-200/80">
       <div ref={ref} className="mx-auto max-w-4xl">
         <SectionHeading
           eyebrow="Got Questions?"
           title="Frequently Asked Questions"
           description="Clear answers about our software engineering, automation workflows, pricing, and project delivery in Kenya."
+          theme="light"
         />
 
         <div className="mt-12 space-y-4">
@@ -30,7 +28,7 @@ export function FAQ() {
             return (
               <article
                 key={item.question}
-                className="reveal bento-card overflow-hidden transition-all duration-300"
+                className="reveal rounded-2xl border border-slate-200/90 bg-slate-50/70 overflow-hidden transition-all duration-300 shadow-2xs hover:border-indigo-300"
                 style={{ transitionDelay: `${index * 50}ms` }}
               >
                 <h3>
@@ -38,15 +36,15 @@ export function FAQ() {
                     type="button"
                     onClick={() => toggle(index)}
                     aria-expanded={isOpen}
-                    className="flex w-full items-center justify-between gap-4 p-5 sm:p-6 text-left transition-colors hover:text-cyan-300"
+                    className="flex w-full items-center justify-between gap-4 p-5 sm:p-6 text-left transition-colors hover:text-indigo-600"
                   >
-                    <span className="flex items-center gap-3 font-display text-base sm:text-lg font-bold text-white">
-                      <HelpCircle className="h-5 w-5 shrink-0 text-cyan-400" aria-hidden="true" />
+                    <span className="flex items-center gap-3 font-display text-base sm:text-lg font-bold text-slate-900">
+                      <HelpCircle className="h-5 w-5 shrink-0 text-indigo-600" aria-hidden="true" />
                       {item.question}
                     </span>
                     <span
-                      className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-slate-300 transition-transform duration-300 ${
-                        isOpen ? 'rotate-180 text-cyan-300 border-cyan-400/40 bg-cyan-500/10' : ''
+                      className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 transition-transform duration-300 ${
+                        isOpen ? 'rotate-180 text-indigo-600 border-indigo-300 bg-indigo-50' : ''
                       }`}
                     >
                       <ChevronDown className="h-4 w-4" aria-hidden="true" />
@@ -59,7 +57,7 @@ export function FAQ() {
                   }`}
                 >
                   <div className="px-5 pb-6 pt-1 sm:px-6 sm:pb-7">
-                    <p className="border-t border-white/[0.06] pt-4 text-sm sm:text-base leading-relaxed text-slate-300">
+                    <p className="border-t border-slate-200/80 pt-4 text-sm sm:text-base leading-relaxed text-slate-600">
                       {item.answer}
                     </p>
                   </div>
@@ -70,19 +68,21 @@ export function FAQ() {
         </div>
 
         {/* Support callout */}
-        <div className="reveal mt-10 rounded-2xl border border-white/10 bg-white/[0.02] p-5 text-center sm:p-6">
-          <p className="text-sm text-slate-300">
+        <div className="reveal mt-10 rounded-2xl border border-slate-200/90 bg-slate-50 p-5 text-center sm:p-6">
+          <p className="text-sm text-slate-600">
             Have a question not listed here?{' '}
             <a
               href="#contact"
-              className="font-semibold text-cyan-400 underline underline-offset-4 transition-colors hover:text-cyan-300"
+              className="font-semibold text-indigo-600 underline underline-offset-4 transition-colors hover:text-indigo-700"
             >
               Ask our Nairobi engineering team directly
             </a>{' '}
-            or call{' '}
+            or message us on WhatsApp at{' '}
             <a
-              href="tel:+254791371301"
-              className="font-semibold text-cyan-400 underline underline-offset-4 transition-colors hover:text-cyan-300"
+              href="https://wa.me/254791371301"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-emerald-600 hover:text-emerald-700 underline underline-offset-4"
             >
               +254 791 371 301
             </a>

@@ -9,6 +9,9 @@ import {
   Wifi,
   Clock,
   ShieldCheck,
+  Sparkles,
+  ArrowRight,
+  Zap,
 } from 'lucide-react';
 import { SectionHeading } from './About';
 import { useRevealGroup } from '../hooks/useRevealGroup';
@@ -42,6 +45,59 @@ const initialForm: QuoteForm = {
 
 const timelines = ['ASAP', '1 month', '1 – 3 months', '3 – 6 months', 'Flexible'];
 
+const pricingPackages = [
+  {
+    name: 'Sprint MVP / Web Platform',
+    price: 'KES 65,000',
+    usd: '~$500 USD',
+    description: 'Fast-track launch for startups, corporate brands, and growing businesses.',
+    service: 'Website Development',
+    budget: 'KES 65,000',
+    timeline: '1 month',
+    popular: false,
+    features: [
+      'Custom React / Next.js Responsive Web Platform',
+      'Technical SEO & Core Web Vitals Optimization',
+      'Lead Capture Form & Instant WhatsApp Integration',
+      '30-Day Post-Launch Technical Support & SLA',
+    ],
+  },
+  {
+    name: 'Enterprise Automation & Zoho',
+    price: 'KES 140,000',
+    usd: '~$1,100 USD',
+    description: 'End-to-end operational automation, payment webhooks, and CRM pipeline sync.',
+    service: 'Business Automation',
+    budget: 'KES 140,000',
+    timeline: '1 – 3 months',
+    popular: true,
+    features: [
+      'Safaricom M-Pesa Daraja STK Push & B2C/C2B Integration',
+      'Zoho CRM, Creator & Power Automate Workflows',
+      'Custom Webhooks & Multi-Platform Database Sync',
+      'Instant SMS & WhatsApp Client Notification Triggers',
+      '60-Day Dedicated Priority SLA & Maintenance',
+    ],
+  },
+  {
+    name: 'Full-Funnel Growth & BI Analytics',
+    price: 'KES 220,000',
+    usd: '~$1,750 USD',
+    description: 'Executive intelligence dashboards and high-conversion acquisition funnels.',
+    service: 'Data Analytics & Business Intelligence',
+    budget: 'KES 220,000',
+    timeline: '1 – 3 months',
+    popular: false,
+    features: [
+      'Interactive Power BI & Python Executive Dashboards',
+      'Targeted Meta & Google Ads Campaign Engineering',
+      'Technical SEO Architecture & Funnel CRO Optimization',
+      'Predictive Revenue Forecasting & Multi-Source ETL',
+      'Quarterly Strategic Engineering & SLA Reviews',
+    ],
+  },
+];
+
 export function GetAQuote({ sourcePage }: { sourcePage: string }) {
   const ref = useRevealGroup<HTMLDivElement>();
   const [form, setForm] = useState<QuoteForm>(initialForm);
@@ -59,6 +115,21 @@ export function GetAQuote({ sourcePage }: { sourcePage: string }) {
     window.addEventListener('select-service', onServiceSelect);
     return () => window.removeEventListener('select-service', onServiceSelect);
   }, []);
+
+  const selectPackage = (pkg: typeof pricingPackages[0]) => {
+    setForm((current) => ({
+      ...current,
+      service: pkg.service,
+      budget: pkg.budget,
+      timeline: pkg.timeline,
+      description: current.description || `Inquiring about the ${pkg.name} package.`,
+    }));
+
+    const formEl = document.querySelector('#quote-form-container');
+    if (formEl) {
+      formEl.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   const update =
     (key: keyof QuoteForm) =>
@@ -121,65 +192,143 @@ export function GetAQuote({ sourcePage }: { sourcePage: string }) {
       setErrorMsg(
         err instanceof Error
           ? err.message
-          : 'Something went wrong. Please try again or contact us directly at wambuahenry15@gmail.com.'
+          : 'Something went wrong. Please try again or contact us directly at info@hmtechnologies.co.ke.'
       );
     }
   };
 
   return (
-    <section id="quote" className="section-padding relative">
+    <section id="quote" className="section-padding relative bg-slate-50 text-slate-900 border-t border-slate-200/80">
       <div ref={ref} className="mx-auto max-w-7xl">
         <SectionHeading
-          eyebrow="Pricing"
-          title="Request a Tailored Project Proposal"
-          description="Tell us about your project and we'll prepare an itemized proposal with transparent pricing and clear delivery milestones — no obligations."
+          eyebrow="Transparent Pricing &amp; Packages"
+          title="Engagement Packages &amp; Custom Project Estimates"
+          description="Transparent, milestone-based pricing with guaranteed delivery SLAs. Choose a pre-packaged tier or request a bespoke itemized proposal."
+          theme="light"
         />
 
-        <div className="mt-14 grid gap-8 lg:grid-cols-5">
+        {/* ── ENGAGEMENT PACKAGES (3 CARDS) ── */}
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {pricingPackages.map((pkg) => (
+            <div
+              key={pkg.name}
+              className={`reveal rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 ${
+                pkg.popular
+                  ? 'bg-white ring-2 ring-indigo-600 shadow-xl relative -translate-y-1'
+                  : 'bg-white border border-slate-200/90 shadow-sm hover:shadow-lg hover:-translate-y-0.5'
+              }`}
+            >
+              <div>
+                {pkg.popular ? (
+                  <div className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-indigo-50 border border-indigo-200 px-3 py-1 text-xs font-bold text-indigo-700">
+                    <Sparkles className="h-3.5 w-3.5 text-indigo-600" />
+                    RECOMMENDED • MOST POPULAR
+                  </div>
+                ) : (
+                  <div className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-slate-100 border border-slate-200 px-3 py-1 text-xs font-semibold text-slate-600">
+                    <Zap className="h-3.5 w-3.5 text-slate-500" />
+                    Tailored Solution
+                  </div>
+                )}
+
+                <h3 className="font-display text-xl font-bold text-slate-900">
+                  {pkg.name}
+                </h3>
+                <p className="mt-2 text-xs leading-relaxed text-slate-600">
+                  {pkg.description}
+                </p>
+
+                <div className="mt-5 pb-5 border-b border-slate-200/80">
+                  <div className="flex items-baseline gap-2">
+                    <span className="font-display text-3xl font-extrabold text-slate-900">
+                      {pkg.price}
+                    </span>
+                    <span className="text-xs font-medium text-slate-500">
+                      {pkg.usd}
+                    </span>
+                  </div>
+                  <span className="mt-1 block text-[11px] font-medium text-emerald-700">
+                    ✓ Milestone-based payment terms
+                  </span>
+                </div>
+
+                <div className="mt-5 space-y-2.5">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                    Deliverables Included:
+                  </span>
+                  {pkg.features.map((feat) => (
+                    <div key={feat} className="flex items-start gap-2.5 text-xs text-slate-700">
+                      <CheckCircle2 className={`h-4 w-4 shrink-0 mt-0.5 ${pkg.popular ? 'text-indigo-600' : 'text-emerald-600'}`} />
+                      <span>{feat}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mt-8 pt-4">
+                <button
+                  type="button"
+                  onClick={() => selectPackage(pkg)}
+                  className={`group w-full rounded-full py-3 px-5 text-sm font-bold flex items-center justify-center gap-2 transition-all ${
+                    pkg.popular
+                      ? 'bg-indigo-600 hover:bg-indigo-700 text-white shadow-md hover:shadow-indigo-500/25'
+                      : 'bg-slate-100 hover:bg-slate-200 text-slate-800'
+                  }`}
+                >
+                  <span>Select Package</span>
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* ── CUSTOM QUOTE FORM CONTAINER ── */}
+        <div id="quote-form-container" className="mt-16 grid gap-8 lg:grid-cols-5">
           {/* Left: value props */}
           <div className="reveal lg:col-span-2" style={{ transitionDelay: '60ms' }}>
             <div className="space-y-4">
               <ValueProp
                 icon={<Clock className="h-5 w-5" />}
-                title="Fast Response"
-                text="We reply to every quote request within one business day."
+                title="Fast SLA Response"
+                text="We reply to every quote request within two business hours."
               />
               <ValueProp
                 icon={<ShieldCheck className="h-5 w-5" />}
-                title="Transparent Pricing"
-                text="Clear, itemized proposals — no hidden fees or surprise costs."
+                title="Itemized Proposals"
+                text="Clear, transparent pricing breakdown — no hidden fees or surprise costs."
               />
               <ValueProp
                 icon={<MapPin className="h-5 w-5" />}
-                title="Local & Global"
-                text="Based in Nairobi, serving clients across Africa and online worldwide."
+                title="Nairobi Hub &amp; Global Standard"
+                text="Based in Nairobi, Kenya, engineering platforms for Africa and worldwide."
               />
               <ValueProp
                 icon={<Wifi className="h-5 w-5" />}
-                title="Online Services"
-                text="We deliver remotely with the same care as on-site engagements."
+                title="Reliable Remote Delivery"
+                text="We manage sprints remotely with transparent Jira/Trello boards and weekly demos."
               />
             </div>
 
-            <div className="glass mt-6 rounded-2xl p-6">
-              <div className="flex items-center gap-2 text-electric-300">
+            <div className="mt-6 rounded-2xl border border-slate-200/90 bg-white p-6 shadow-2xs">
+              <div className="flex items-center gap-2 text-indigo-600">
                 <Calculator className="h-5 w-5" />
-                <span className="font-display text-sm font-semibold text-white">
-                  How it works
+                <span className="font-display text-sm font-bold text-slate-900">
+                  How Our Proposal Works
                 </span>
               </div>
-              <ol className="mt-4 space-y-3 text-sm text-silver-300">
+              <ol className="mt-4 space-y-3 text-xs leading-relaxed text-slate-600">
                 <li className="flex gap-3">
-                  <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-electric-500/20 text-xs font-bold text-electric-300">1</span>
-                  Submit the form with your project details.
+                  <span className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-indigo-50 text-indigo-700 font-bold text-[11px]">1</span>
+                  Submit project details or select a package above.
                 </li>
                 <li className="flex gap-3">
-                  <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-electric-500/20 text-xs font-bold text-electric-300">2</span>
-                  We review and prepare a tailored proposal.
+                  <span className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-indigo-50 text-indigo-700 font-bold text-[11px]">2</span>
+                  We analyze system requirements, stack, and scope.
                 </li>
                 <li className="flex gap-3">
-                  <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-ember-500/20 text-xs font-bold text-ember-400">3</span>
-                  You receive a quote with scope, timeline & price.
+                  <span className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-emerald-50 text-emerald-700 font-bold text-[11px]">3</span>
+                  You receive an itemized proposal with deliverables, milestones &amp; SLAs.
                 </li>
               </ol>
             </div>
@@ -187,7 +336,14 @@ export function GetAQuote({ sourcePage }: { sourcePage: string }) {
 
           {/* Right: form */}
           <div className="reveal lg:col-span-3" style={{ transitionDelay: '140ms' }}>
-            <form onSubmit={handleSubmit} className="glass rounded-3xl p-6 sm:p-8" noValidate>
+            <form onSubmit={handleSubmit} className="rounded-3xl border border-slate-200/90 bg-white p-6 sm:p-8 shadow-sm" noValidate>
+              <h3 className="font-display text-xl font-bold text-slate-900">
+                Request a Custom Quote
+              </h3>
+              <p className="mt-1 text-xs text-slate-500 mb-6">
+                Tell us about your architecture, goals, and timeline.
+              </p>
+
               <div className="grid gap-5 sm:grid-cols-2">
                 <Field label="Name" required>
                   <input type="text" value={form.name} onChange={update('name')} placeholder="Your full name" className={inputClass} required />
@@ -196,7 +352,7 @@ export function GetAQuote({ sourcePage }: { sourcePage: string }) {
                   <input type="email" value={form.email} onChange={update('email')} placeholder="you@company.com" className={inputClass} required />
                 </Field>
                 <Field label="Phone">
-                  <input type="tel" value={form.phone} onChange={update('phone')} placeholder="+254 ..." className={inputClass} />
+                  <input type="tel" value={form.phone} onChange={update('phone')} placeholder="+254 7..." className={inputClass} />
                 </Field>
                 <Field label="Company">
                   <input type="text" value={form.company} onChange={update('company')} placeholder="Company name" className={inputClass} />
@@ -205,7 +361,7 @@ export function GetAQuote({ sourcePage }: { sourcePage: string }) {
                   <select value={form.service} onChange={update('service')} className={inputClass} required>
                     <option value="">Select a service</option>
                     {serviceOptions.map((s) => (
-                      <option key={s} value={s} className="bg-navy-800">{s}</option>
+                      <option key={s} value={s}>{s}</option>
                     ))}
                   </select>
                 </Field>
@@ -214,7 +370,7 @@ export function GetAQuote({ sourcePage }: { sourcePage: string }) {
                     type="text"
                     value={form.budget}
                     onChange={update('budget')}
-                    placeholder="e.g. KSh 50,000"
+                    placeholder="e.g. KSh 140,000"
                     className={inputClass}
                   />
                 </Field>
@@ -223,7 +379,7 @@ export function GetAQuote({ sourcePage }: { sourcePage: string }) {
                     <select value={form.timeline} onChange={update('timeline')} className={inputClass}>
                       <option value="">Select a timeline</option>
                       {timelines.map((t) => (
-                        <option key={t} value={t} className="bg-navy-800">{t}</option>
+                        <option key={t} value={t}>{t}</option>
                       ))}
                     </select>
                   </Field>
@@ -233,8 +389,8 @@ export function GetAQuote({ sourcePage }: { sourcePage: string }) {
                     <textarea
                       value={form.description}
                       onChange={update('description')}
-                      placeholder="Describe your project, goals, and any specific requirements..."
-                      rows={5}
+                      placeholder="Describe your project, objectives, technical requirements, or automation goals..."
+                      rows={4}
                       className={`${inputClass} resize-none`}
                       required
                     />
@@ -245,24 +401,24 @@ export function GetAQuote({ sourcePage }: { sourcePage: string }) {
               <button
                 type="submit"
                 disabled={status === 'loading'}
-                className="btn-primary mt-6 w-full disabled:cursor-not-allowed disabled:opacity-70"
+                className="group mt-6 w-full rounded-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-6 shadow-md hover:shadow-indigo-500/25 flex items-center justify-center gap-2 transition-all disabled:cursor-not-allowed disabled:opacity-70"
               >
                 {status === 'loading' ? (
-                  <><Loader2 className="h-4 w-4 animate-spin" /> Submitting...</>
+                  <><Loader2 className="h-4 w-4 animate-spin" /> Submitting Request...</>
                 ) : (
-                  <><Send className="h-4 w-4" /> Request Quote</>
+                  <><Send className="h-4 w-4" /> <span>Submit Proposal Request</span> <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></>
                 )}
               </button>
 
               {status === 'success' && (
-                <div className="mt-4 flex items-center gap-2 rounded-xl border border-green-500/30 bg-green-500/10 px-4 py-3 text-sm text-green-300">
-                  <CheckCircle2 className="h-5 w-5 flex-shrink-0" />
-                  Thank you! Your quote request has been received. We'll send a tailored proposal within one business day.
+                <div className="mt-4 flex items-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-xs font-semibold text-emerald-800">
+                  <CheckCircle2 className="h-4 w-4 flex-shrink-0 text-emerald-600" />
+                  Thank you! Your quote request has been received. Our Nairobi engineering team will send a tailored proposal within two hours.
                 </div>
               )}
               {status === 'error' && (
-                <div className="mt-4 flex items-center gap-2 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
-                  <AlertCircle className="h-5 w-5 flex-shrink-0" />
+                <div className="mt-4 flex items-center gap-2 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-xs font-semibold text-red-800">
+                  <AlertCircle className="h-4 w-4 flex-shrink-0 text-red-600" />
                   {errorMsg}
                 </div>
               )}
@@ -275,7 +431,7 @@ export function GetAQuote({ sourcePage }: { sourcePage: string }) {
 }
 
 const inputClass =
-  'w-full rounded-xl border border-white/10 bg-navy-900/50 px-4 py-3 text-sm text-white placeholder:text-silver-400 transition-all focus:border-electric-500/50 focus:outline-none focus:ring-2 focus:ring-electric-500/20';
+  'w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 transition-all focus:border-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 shadow-2xs';
 
 function Field({
   label,
@@ -288,9 +444,9 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="mb-2 block text-xs font-semibold uppercase tracking-wider text-silver-300">
+      <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-600">
         {label}
-        {required && <span className="text-ember-400"> *</span>}
+        {required && <span className="text-rose-500"> *</span>}
       </span>
       {children}
     </label>
@@ -307,13 +463,13 @@ function ValueProp({
   text: string;
 }) {
   return (
-    <div className="glass flex items-start gap-4 rounded-2xl p-5 transition-all hover:-translate-y-0.5 hover:border-electric-500/30">
-      <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-electric-500/15 text-electric-300">
+    <div className="flex items-start gap-3.5 rounded-2xl border border-slate-200/90 bg-white p-4.5 shadow-2xs transition-all hover:-translate-y-0.5 hover:border-indigo-300">
+      <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600">
         {icon}
       </span>
       <div className="flex flex-col">
-        <span className="font-display text-sm font-semibold text-white">{title}</span>
-        <span className="mt-1 text-sm leading-relaxed text-silver-300">{text}</span>
+        <span className="font-display text-sm font-bold text-slate-900">{title}</span>
+        <span className="mt-0.5 text-xs leading-relaxed text-slate-600">{text}</span>
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ interface SectionHeadingProps {
   title: string;
   description?: string;
   align?: 'left' | 'center';
+  theme?: 'light' | 'dark';
 }
 
 export function SectionHeading({
@@ -13,8 +14,26 @@ export function SectionHeading({
   title,
   description,
   align = 'center',
+  theme = 'dark',
 }: SectionHeadingProps) {
   const alignClass = align === 'center' ? 'text-center mx-auto' : 'text-left';
+  
+  if (theme === 'light') {
+    return (
+      <div className={`reveal max-w-2xl ${alignClass}`}>
+        <span className="inline-flex items-center gap-2 rounded-full border border-indigo-200/90 bg-indigo-50/90 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.15em] text-indigo-700 shadow-sm">
+          {eyebrow}
+        </span>
+        <h2 className="mt-5 font-display text-3xl font-extrabold leading-tight text-slate-900 sm:text-4xl lg:text-5xl tracking-tight">
+          {title}
+        </h2>
+        {description && (
+          <p className="mt-5 text-base leading-relaxed text-slate-600 sm:text-lg">{description}</p>
+        )}
+      </div>
+    );
+  }
+
   return (
     <div className={`reveal max-w-2xl ${alignClass}`}>
       <span className="inline-flex items-center gap-2 rounded-full border border-cyan-500/25 bg-cyan-500/[0.08] px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.15em] text-cyan-300 backdrop-blur-sm">

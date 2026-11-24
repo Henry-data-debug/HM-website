@@ -1,4 +1,4 @@
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight, MessageSquare, Sparkles } from 'lucide-react';
 
 export function CTA() {
   const scrollTo = (href: string) => {
@@ -6,11 +6,10 @@ export function CTA() {
   };
 
   return (
-    <section className="relative overflow-hidden py-24 sm:py-28">
-      {/* Ambient gradient background */}
+    <section className="relative overflow-hidden py-24 sm:py-28 bg-[#090D16] border-t border-white/10">
+      {/* Ambient gradient glow in Deep Obsidian */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0B1120] via-[#0F172A] to-[#060911]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[800px] rounded-full bg-gradient-to-r from-electric-500/15 via-cyan-500/12 to-indigo-500/10 blur-[120px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[800px] rounded-full bg-gradient-to-r from-indigo-500/15 via-cyan-500/12 to-emerald-500/10 blur-[120px]" />
         <div className="absolute inset-0 bg-grid-pattern bg-grid opacity-15" />
       </div>
 
@@ -26,25 +25,28 @@ export function CTA() {
         </h2>
 
         <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">
-          Whether you need to automate operations, build custom software, or launch high-converting campaigns —
-          our team is ready to deliver measurable results.
+          Whether you need to automate workflows with M-Pesa, build custom software platforms, or launch high-converting campaigns —
+          our Nairobi engineering team is ready to deliver measurable results.
         </p>
 
-        <div className="mt-9 flex flex-col items-center justify-center gap-3.5 sm:flex-row">
+        <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <a
-            href="#contact"
-            onClick={(e) => { e.preventDefault(); scrollTo('#contact'); }}
-            className="btn-primary w-full sm:w-auto text-base px-8 py-3.5"
+            href="https://wa.me/254791371301"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-emerald w-full sm:w-auto text-base px-8 py-3.5 group flex items-center justify-center gap-2"
           >
-            <span>Schedule Consultation</span>
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            <MessageSquare className="h-4 w-4" />
+            <span>Chat on WhatsApp (+254 791 371 301)</span>
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </a>
           <a
-            href="#contact"
-            onClick={(e) => { e.preventDefault(); scrollTo('#contact'); }}
-            className="btn-secondary w-full sm:w-auto text-base px-8 py-3.5"
+            href="#quote"
+            onClick={(e) => { e.preventDefault(); scrollTo('#quote'); }}
+            className="btn-primary w-full sm:w-auto text-base px-8 py-3.5 group flex items-center justify-center gap-2"
           >
-            Send a Message
+            <span>Request Project Proposal</span>
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
           </a>
         </div>
 

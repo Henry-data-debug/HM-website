@@ -6,14 +6,14 @@ export function Process() {
   const ref = useRevealGroup<HTMLDivElement>();
 
   return (
-    <section id="process" className="section-padding relative overflow-hidden">
+    <section id="process" className="section-padding relative overflow-hidden bg-[#0F172A]">
       {/* Ambient glow */}
       <div className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 h-[350px] w-[600px] rounded-full bg-indigo-500/[0.07] blur-[100px] -z-10" />
 
       <div ref={ref} className="mx-auto max-w-7xl">
         <SectionHeading
           eyebrow="How We Work"
-          title="Our Engineering &amp; Delivery Process"
+          title="Our Engineering & Delivery Process"
           description="A proven, structured approach from first consultation to post-launch support and SLAs."
         />
 
@@ -41,7 +41,7 @@ export function Process() {
 
                 {/* Content Card (single semantic instance) */}
                 <div className={`w-full lg:w-1/2 ${i % 2 === 0 ? 'lg:order-1 lg:pr-12 lg:text-right' : 'lg:order-3 lg:pl-12 text-left'}`}>
-                  <div className="bento-card inline-block w-full p-5 text-left">
+                  <div className="rounded-2xl border border-slate-700/80 bg-slate-800/50 backdrop-blur-xl inline-block w-full p-5 text-left hover:border-cyan-500/40 hover:-translate-y-0.5 transition-all shadow-lg">
                     <span className="text-[11px] font-bold uppercase tracking-wider text-cyan-400">Step {step.number}</span>
                     <h3 className="mt-1.5 font-display text-lg font-bold text-white">{step.title}</h3>
                     <p className="mt-1.5 text-sm leading-relaxed text-slate-300">{step.description}</p>

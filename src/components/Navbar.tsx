@@ -20,8 +20,8 @@ export function Navbar({ activePath }: { activePath?: string } = {}) {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'bg-[#060911]/80 backdrop-blur-2xl border-b border-white/[0.06] shadow-glass py-2.5'
-          : 'bg-transparent py-5'
+          ? 'bg-[#090D16]/80 backdrop-blur-md border-b border-white/10 shadow-glass py-2.5'
+          : 'bg-transparent py-4'
       }`}
     >
       <nav aria-label="Main navigation" className="mx-auto flex max-w-7xl items-center justify-between px-5 lg:px-8">
@@ -55,14 +55,26 @@ export function Navbar({ activePath }: { activePath?: string } = {}) {
           })}
         </ul>
 
-        {/* Desktop CTA */}
+        {/* Desktop CTA & Signal Emerald status pill */}
         <div className="hidden items-center gap-3 lg:flex">
+          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1.5 text-xs font-medium text-emerald-400">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+            </span>
+            <span className="font-semibold tracking-wide">Available for Q1 Projects</span>
+          </div>
+
           <a href="#admin" className="flex h-9 w-9 items-center justify-center rounded-full text-slate-500 transition-colors hover:text-cyan-400" aria-label="Admin login" title="Admin login">
             <Shield className="h-4 w-4" />
           </a>
-          <a href="#contact" onClick={(event) => { event.preventDefault(); navigateTo('#contact'); }} className="btn-primary text-sm px-5 py-2.5">
-            Get Started
-            <ArrowRight className="h-3.5 w-3.5" />
+          <a
+            href="#contact"
+            onClick={(event) => { event.preventDefault(); navigateTo('#contact'); }}
+            className="group btn-primary text-sm px-5 py-2.5"
+          >
+            <span>Get Started</span>
+            <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-1" />
           </a>
         </div>
 
