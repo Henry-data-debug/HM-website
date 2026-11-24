@@ -59,9 +59,14 @@ export function Projects({ initialSlug }: ProjectsProps) {
   // If a specific project is selected, render the guided walkthrough
   if (activeProject) {
     return (
-      <section id="project-tour" className="section-padding relative overflow-hidden bg-[#090D16]">
-        <div className="pointer-events-none absolute inset-0 bg-grid-pattern bg-grid opacity-15" />
-        <div className="pointer-events-none absolute top-1/4 left-1/2 -translate-x-1/2 h-[450px] w-[750px] rounded-full bg-cyan-500/10 blur-[130px] -z-10" />
+      <section id="project-tour" className="relative overflow-hidden bg-[#FAF7F2] text-[#1C2E2E] min-h-screen">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.06]"
+          style={{
+            backgroundImage: 'radial-gradient(#0F3D3E 1px, transparent 1px)',
+            backgroundSize: '24px 24px',
+          }}
+        />
         <ProjectTour project={activeProject} onBack={handleBackToProjects} />
       </section>
     );
