@@ -53,32 +53,48 @@ export function About() {
   const ref = useRevealGroup<HTMLDivElement>();
 
   return (
-    <section id="about" className="section-padding relative overflow-hidden">
-      {/* Ambient glow */}
-      <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 h-[400px] w-[700px] rounded-full bg-gradient-to-b from-cyan-500/10 to-transparent blur-[100px] -z-10" />
-
+    <section id="about" className="section-padding relative overflow-hidden bg-white text-slate-900 border-t border-slate-200/80">
       <div ref={ref} className="mx-auto max-w-7xl">
         <div className="grid gap-14 lg:grid-cols-2 lg:items-center">
-          {/* Left: visual */}
+          {/* Left: visual studio card with high-res engineering visual */}
           <div className="reveal relative">
-            <div className="glass relative overflow-hidden rounded-3xl p-8">
-              <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-cyan-500/15 blur-3xl" />
-              <div className="absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-ember-500/10 blur-3xl" />
-
-              <div className="relative grid grid-cols-2 gap-4">
-                <StatTile value="7+" label="Years in business" gradient="from-cyan-500/20 to-electric-700/10" />
-                <StatTile value="50+" label="Projects delivered" gradient="from-ember-500/20 to-ember-600/10" />
-                <StatTile value="15+" label="Tech stack experts" gradient="from-electric-500/20 to-indigo-700/10" />
-                <StatTile value="100%" label="Client focus" gradient="from-ember-500/20 to-amber-600/10" />
+            <div className="relative overflow-hidden rounded-3xl border border-slate-200/90 bg-slate-50 p-6 sm:p-8 shadow-sm">
+              {/* Studio Image Header */}
+              <div className="relative h-56 sm:h-64 overflow-hidden rounded-2xl border border-slate-200 shadow-inner group">
+                <img
+                  src="/hero/software-engineering-studio.jpg"
+                  alt="HM Technologies Nairobi Engineering Studio & Architecture"
+                  className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
+                <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-900/80 border border-white/20 px-3 py-1 text-[11px] font-bold text-white backdrop-blur-md">
+                    <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                    Engineering Studio • Nairobi HQ
+                  </span>
+                  <span className="text-[10px] font-mono text-slate-300 bg-black/60 px-2 py-0.5 rounded">
+                    TS · Python · Daraja
+                  </span>
+                </div>
               </div>
 
-              <div className="relative mt-6 rounded-2xl border border-white/[0.08] bg-[#070D1A]/60 p-5">
+              {/* 4 Key Statistics Micro-Grid */}
+              <div className="relative mt-6 grid grid-cols-2 gap-3.5">
+                <StatTile value="7+" label="Years in business" accent="indigo" />
+                <StatTile value="50+" label="Projects delivered" accent="emerald" />
+                <StatTile value="15+" label="Tech stack experts" accent="sky" />
+                <StatTile value="100%" label="Client focus" accent="amber" />
+              </div>
+
+              {/* Transformation Indicator */}
+              <div className="relative mt-5 rounded-2xl border border-slate-200 bg-white p-4 shadow-2xs">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium text-slate-400">Digital Transformation Index</span>
-                  <span className="text-xs font-bold text-cyan-400">+180%</span>
+                  <span className="text-xs font-semibold text-slate-700">Digital Transformation Impact</span>
+                  <span className="text-xs font-bold text-indigo-600">+180% Avg ROI</span>
                 </div>
-                <div className="mt-3 h-2 overflow-hidden rounded-full bg-white/[0.06]">
-                  <div className="h-full w-[85%] rounded-full bg-gradient-to-r from-electric-500 via-cyan-500 to-ember-500" />
+                <div className="mt-2.5 h-2 overflow-hidden rounded-full bg-slate-100">
+                  <div className="h-full w-[85%] rounded-full bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500" />
                 </div>
               </div>
             </div>
@@ -91,6 +107,7 @@ export function About() {
               title="About HM Technologies"
               description="We are a Nairobi-based technology engineering firm helping businesses scale through custom software, automated operational workflows, data analytics, and digital marketing."
               align="left"
+              theme="light"
             />
 
             <div className="mt-10 grid gap-5 sm:grid-cols-2">
@@ -98,13 +115,13 @@ export function About() {
                 icon={<Target className="h-5 w-5" />}
                 title="Our Mission"
                 description="To deliver innovative, reliable, and affordable tech solutions that drive real business growth across Africa and beyond."
-                gradient="from-electric-500/15 to-cyan-500/15"
+                accent="indigo"
               />
               <MissionCard
                 icon={<Eye className="h-5 w-5" />}
                 title="Our Vision"
                 description="To become East Africa's most trusted partner for digital transformation, empowering organizations of every size to compete globally."
-                gradient="from-ember-500/15 to-amber-500/15"
+                accent="emerald"
               />
             </div>
           </div>
@@ -117,16 +134,23 @@ export function About() {
 function StatTile({
   value,
   label,
-  gradient,
+  accent,
 }: {
   value: string;
   label: string;
-  gradient: string;
+  accent: 'indigo' | 'emerald' | 'sky' | 'amber';
 }) {
+  const accentClasses = {
+    indigo: 'border-indigo-100 bg-indigo-50/40 text-indigo-700',
+    emerald: 'border-emerald-100 bg-emerald-50/40 text-emerald-700',
+    sky: 'border-sky-100 bg-sky-50/40 text-sky-700',
+    amber: 'border-amber-100 bg-amber-50/40 text-amber-700',
+  }[accent];
+
   return (
-    <div className={`relative overflow-hidden rounded-2xl border border-white/[0.08] bg-gradient-to-br ${gradient} p-5`}>
-      <span className="font-display text-3xl font-extrabold text-white">{value}</span>
-      <span className="mt-1 block text-xs font-medium text-slate-300">{label}</span>
+    <div className={`relative overflow-hidden rounded-2xl border ${accentClasses} p-4 transition-all hover:shadow-xs`}>
+      <span className="font-display text-2xl sm:text-3xl font-extrabold text-slate-900">{value}</span>
+      <span className="mt-1 block text-xs font-semibold text-slate-600">{label}</span>
     </div>
   );
 }
@@ -135,20 +159,24 @@ function MissionCard({
   icon,
   title,
   description,
-  gradient,
+  accent,
 }: {
   icon: React.ReactNode;
   title: string;
   description: string;
-  gradient: string;
+  accent: 'indigo' | 'emerald';
 }) {
+  const iconClasses = accent === 'indigo'
+    ? 'bg-indigo-50 text-indigo-600 border-indigo-200'
+    : 'bg-emerald-50 text-emerald-600 border-emerald-200';
+
   return (
-    <div className={`bento-card bg-gradient-to-br ${gradient} p-6`}>
-      <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/[0.08] text-cyan-300 border border-white/[0.06]">
+    <div className="rounded-2xl border border-slate-200/90 bg-slate-50/70 p-6 shadow-2xs transition-all hover:bg-white hover:shadow-sm">
+      <span className={`flex h-11 w-11 items-center justify-center rounded-xl border ${iconClasses}`}>
         {icon}
       </span>
-      <h3 className="mt-4 font-display text-lg font-bold text-white">{title}</h3>
-      <p className="mt-2 text-sm leading-relaxed text-slate-300">{description}</p>
+      <h3 className="mt-4 font-display text-lg font-bold text-slate-900">{title}</h3>
+      <p className="mt-2 text-sm leading-relaxed text-slate-600">{description}</p>
     </div>
   );
 }

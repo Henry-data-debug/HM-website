@@ -15,7 +15,6 @@ import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { AdminLogin } from './components/admin/AdminLogin';
 import { AdminDashboard } from './components/admin/AdminDashboard';
-import { GlowDivider } from './components/SectionDivider';
 import { WhatsAppButton } from './components/WhatsAppButton';
 import { useAuth } from './lib/auth';
 
@@ -84,7 +83,7 @@ function App({ initialPath }: AppProps = {}) {
   }
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden text-slate-200">
+    <div className="relative min-h-screen overflow-x-hidden bg-[#F8FAFC] text-slate-900">
       <BackgroundFX />
       <Navbar activePath={pathname} />
       <main>
@@ -98,9 +97,7 @@ function App({ initialPath }: AppProps = {}) {
           <HomePage />
         )}
 
-        <div className="section-tone-elevated">
-          <Contact />
-        </div>
+        <Contact />
       </main>
       <Footer />
       <WhatsAppButton />
@@ -117,18 +114,12 @@ function HomePage() {
       <TrustTicker />
       <Services />
       <ResultsImpact />
-      <GlowDivider accent="blue" />
-      <div className="section-tone-midnight"><Projects /></div>
-      <GlowDivider accent="blue" />
-      <div className="section-tone-midnight"><About /></div>
-      <GlowDivider accent="ember" />
-      <div className="section-tone-elevated"><WhyChooseUs /></div>
-      <GlowDivider accent="blue" />
-      <div className="section-tone-slate"><Process /></div>
-      <GlowDivider accent="ember" />
-      <div className="section-tone-elevated"><Technologies /></div>
-      <GlowDivider accent="ember" />
-      <div className="section-tone-slate"><Testimonials /></div>
+      <Projects />
+      <About />
+      <WhyChooseUs />
+      <Process />
+      <Technologies />
+      <Testimonials />
     </>
   );
 }
@@ -140,11 +131,11 @@ function AboutPage() {
         title="About HM Technologies — Technology & Engineering in Kenya"
         subtitle="Nairobi-based technology team delivering custom software systems, business automation, and data analytics across East Africa."
       />
-      <div className="section-tone-midnight pt-20"><About /></div>
-      <div className="section-tone-elevated"><WhyChooseUs /></div>
-      <div className="section-tone-slate"><Process /></div>
-      <div className="section-tone-elevated"><Technologies /></div>
-      <div className="section-tone-slate"><Testimonials /></div>
+      <About />
+      <WhyChooseUs />
+      <Process />
+      <Technologies />
+      <Testimonials />
     </>
   );
 }
@@ -156,11 +147,11 @@ function ServicesPage() {
         title="Software Development, Automation & IT Services in Kenya"
         subtitle="Explore enterprise-grade web development, bespoke software systems, business intelligence, Power BI dashboards, and digital growth."
       />
-      <div className="pt-20"><Services /></div>
+      <Services />
       <ResultsImpact />
-      <div className="section-tone-elevated"><Technologies /></div>
-      <div className="section-tone-slate"><Process /></div>
-      <div className="section-tone-midnight"><Testimonials /></div>
+      <Technologies />
+      <Process />
+      <Testimonials />
     </>
   );
 }
@@ -185,21 +176,21 @@ function ProjectsPage({ pathname }: { pathname?: string }) {
         subtitle="Explore real-world software platforms, automated business pipelines, and data dashboards engineered for measurable business impact in Kenya."
       />
       <ResultsImpact />
-      <div className="section-tone-midnight pt-20"><Projects initialSlug={slug} /></div>
-      <div className="section-tone-slate"><Testimonials /></div>
+      <Projects initialSlug={slug} />
+      <Testimonials />
     </>
   );
 }
 
 function RouteHeading({ title, subtitle }: { title: string; subtitle?: string }) {
   return (
-    <section className="section-padding pb-0 pt-36">
-      <div className="mx-auto max-w-7xl">
-        <h1 className="font-display text-4xl font-extrabold leading-tight text-white sm:text-5xl">
+    <section className="border-b border-slate-200/80 bg-white pb-12 pt-36">
+      <div className="mx-auto max-w-7xl px-5 lg:px-8">
+        <h1 className="font-display text-3xl font-extrabold leading-tight text-slate-900 sm:text-4xl lg:text-5xl tracking-tight">
           {title}
         </h1>
         {subtitle && (
-          <p className="mt-4 max-w-3xl text-base sm:text-lg leading-relaxed text-slate-300">
+          <p className="mt-4 max-w-3xl text-base sm:text-lg leading-relaxed text-slate-600">
             {subtitle}
           </p>
         )}

@@ -18,14 +18,14 @@ export function Navbar({ activePath }: { activePath?: string } = {}) {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-[#090D16]/80 backdrop-blur-md border-b border-white/10 shadow-glass py-2.5'
-          : 'bg-transparent py-4'
+          ? 'bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-xs py-2.5 text-slate-900'
+          : 'bg-[#090D16]/80 backdrop-blur-md border-b border-white/10 py-3.5 text-white'
       }`}
     >
       <nav aria-label="Main navigation" className="mx-auto flex max-w-7xl items-center justify-between px-5 lg:px-8">
-        <Logo />
+        <Logo scrolled={scrolled} />
 
         {/* Desktop links */}
         <ul className="hidden items-center gap-0.5 lg:flex">
@@ -41,13 +41,19 @@ export function Navbar({ activePath }: { activePath?: string } = {}) {
                     event.preventDefault();
                     navigateTo(link.href);
                   }}
-                  className={`relative rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                    isActive ? 'text-white' : 'text-slate-400 hover:text-white'
+                  className={`relative rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
+                    scrolled
+                      ? isActive
+                        ? 'text-slate-950 font-bold bg-slate-100 ring-1 ring-slate-200'
+                        : 'text-slate-600 hover:text-slate-950 hover:bg-slate-50'
+                      : isActive
+                      ? 'text-white'
+                      : 'text-slate-300 hover:text-white'
                   }`}
                 >
                   {link.label}
-                  {isActive && (
-                    <span className="absolute inset-0 -z-10 rounded-full bg-white/[0.06] ring-1 ring-white/[0.1]" />
+                  {!scrolled && isActive && (
+                    <span className="absolute inset-0 -z-10 rounded-full bg-white/[0.08] ring-1 ring-white/[0.12]" />
                   )}
                 </a>
               </li>
@@ -57,7 +63,7 @@ export function Navbar({ activePath }: { activePath?: string } = {}) {
 
         {/* Desktop CTA & Signal Emerald status pill */}
         <div className="hidden items-center gap-3 lg:flex">
-          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1.5 text-xs font-medium text-emerald-400">
+          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1.5 text-xs font-medium text-emerald-500">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
@@ -65,7 +71,14 @@ export function Navbar({ activePath }: { activePath?: string } = {}) {
             <span className="font-semibold tracking-wide">Available for Q1 Projects</span>
           </div>
 
-          <a href="#admin" className="flex h-9 w-9 items-center justify-center rounded-full text-slate-500 transition-colors hover:text-cyan-400" aria-label="Admin login" title="Admin login">
+          <a
+            href="#admin"
+            className={`flex h-9 w-9 items-center justify-center rounded-full transition-colors ${
+              scrolled ? 'text-slate-400 hover:text-indigo-600' : 'text-slate-400 hover:text-cyan-400'
+            }`}
+            aria-label="Admin login"
+            title="Admin login"
+          >
             <Shield className="h-4 w-4" />
           </a>
           <a
@@ -80,7 +93,7 @@ export function Navbar({ activePath }: { activePath?: string } = {}) {
 
         {/* Mobile toggle */}
         <button
-          className="rounded-lg p-2 text-white lg:hidden"
+          className={`rounded-lg p-2 lg:hidden ${scrolled ? 'text-slate-900' : 'text-white'}`}
           onClick={() => setOpen((o) => !o)}
           aria-label="Toggle menu"
         >
@@ -132,7 +145,7 @@ export function Navbar({ activePath }: { activePath?: string } = {}) {
   );
 }
 
-function Logo() {
+function Logo({ scrolled }: { scrolled?: boolean }) {
   return (
     <a
       href="/"
@@ -143,13 +156,15 @@ function Logo() {
       }}
       className="group flex items-center gap-2.5"
     >
-      <span className="relative flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-electric-500 to-cyan-500 shadow-glow transition-transform group-hover:scale-105">
+      <span className="relative flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-600 to-cyan-500 shadow-sm transition-transform group-hover:scale-105">
         <span className="font-display text-base font-extrabold text-white">H</span>
-        <span className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full bg-cyan-400 shadow-glow-cyan" />
+        <span className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full bg-cyan-400" />
       </span>
       <span className="flex flex-col leading-none">
-        <span className="font-display text-sm font-bold text-white tracking-tight">HM Technologies</span>
-        <span className="text-[10px] font-semibold tracking-[0.18em] text-cyan-400">
+        <span className={`font-display text-sm font-bold tracking-tight transition-colors ${scrolled ? 'text-slate-900' : 'text-white'}`}>
+          HM Technologies
+        </span>
+        <span className={`text-[10px] font-bold tracking-[0.18em] ${scrolled ? 'text-indigo-600' : 'text-cyan-400'}`}>
           DIGITAL EXCELLENCE
         </span>
       </span>

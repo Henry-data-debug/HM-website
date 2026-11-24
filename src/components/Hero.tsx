@@ -15,24 +15,24 @@ import {
 
 const heroSlides = [
   {
-    label: 'Software & Web',
-    src: '/hero/software-web.webp',
-    alt: 'Custom software and web application development workspace at HM Technologies Nairobi',
+    label: 'Platform Operations',
+    src: '/hero/hero-platform-dashboard.jpg',
+    alt: 'Executive cloud operations dashboard and M-Pesa automated transaction analytics at HM Technologies Nairobi',
   },
   {
-    label: 'Data & Analytics',
-    src: '/hero/analytics.webp',
-    alt: 'Data analytics, business intelligence dashboards and operational performance metrics',
+    label: 'Engineering Studio',
+    src: '/hero/software-engineering-studio.jpg',
+    alt: 'Custom software, web applications and microservices engineering studio at HM Technologies',
   },
   {
-    label: 'Cloud & Systems',
-    src: '/hero/cloud-systems.webp',
-    alt: 'Enterprise cloud infrastructure, Azure solutions, and automated workflows',
+    label: 'BI & Analytics',
+    src: '/hero/data-analytics-bi.jpg',
+    alt: 'Executive Power BI dashboards, ETL pipelines, and financial analytics at HM Technologies',
   },
   {
-    label: 'Digital Growth',
-    src: '/hero/digital-growth.webp',
-    alt: 'Digital marketing, SEO optimization, and omnichannel business growth strategies',
+    label: 'M-Pesa Automation',
+    src: '/hero/mpesa-automation-flow.jpg',
+    alt: 'Safaricom M-Pesa Daraja STK Push and Zoho CRM automation workflow at HM Technologies',
   },
 ];
 
@@ -249,41 +249,36 @@ export function Hero() {
               </div>
 
               {/* Dynamic Interactive Tab Content */}
-              <div className="mt-5 min-h-[290px]">
+              <div className="mt-5 min-h-[310px]">
                 {systemTab === 'mpesa' && (
-                  <div className="space-y-3.5 animate-fadeIn">
-                    {/* Live STK Push Banner */}
-                    <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-3.5">
-                      <div className="flex items-center justify-between text-xs">
-                        <span className="flex items-center gap-2 font-bold text-emerald-300">
-                          <span className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500 text-slate-950 text-[10px] font-black">✓</span>
-                          M-Pesa STK Push Confirmed
+                  <div className="space-y-3 animate-fadeIn">
+                    {/* Visual Preview Thumbnail */}
+                    <div className="relative h-28 w-full overflow-hidden rounded-2xl border border-emerald-500/30">
+                      <img
+                        src="/hero/mpesa-automation-flow.jpg"
+                        alt="Safaricom M-Pesa Daraja API and Zoho CRM automated pipeline"
+                        className="h-full w-full object-cover object-center"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#090D16] via-[#090D16]/40 to-transparent" />
+                      <div className="absolute bottom-2 left-3 right-3 flex items-center justify-between text-xs">
+                        <span className="font-semibold text-emerald-300 flex items-center gap-1.5">
+                          <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                          Daraja STK &rarr; Zoho CRM Auto-Sync
                         </span>
-                        <span className="rounded-md bg-emerald-500/20 px-2 py-0.5 text-[10px] font-mono font-bold text-emerald-300">
-                          Daraja B2C/C2B
+                        <span className="text-[10px] font-mono text-emerald-200 bg-emerald-950/70 px-2 py-0.5 rounded border border-emerald-500/40">
+                          200 OK (34ms)
                         </span>
-                      </div>
-                      <div className="mt-2 flex items-baseline justify-between text-xs text-slate-300">
-                        <span>Receipt: QKJ892X01P</span>
-                        <span className="font-mono text-sm font-bold text-white">KES 48,500.00</span>
                       </div>
                     </div>
 
-                    {/* Webhook & Pipeline Stage */}
-                    <div className="rounded-2xl border border-white/10 bg-[#090D16]/90 p-3.5 text-xs font-mono space-y-2">
-                      <div className="flex items-center justify-between text-[11px] text-slate-400 border-b border-white/5 pb-1.5">
-                        <span>POST /api/v1/payments/daraja</span>
-                        <span className="text-emerald-400">200 OK (34ms)</span>
-                      </div>
-                      <div className="space-y-1 text-[11px] text-slate-300">
-                        <div className="flex items-center justify-between">
-                          <span className="text-slate-400">Zoho CRM Sync:</span>
-                          <span className="text-indigo-300">Deal Stage &rarr; Closed Won</span>
-                        </div>
-                        <div className="flex items-center justify-between">
-                          <span className="text-slate-400">Client Alert:</span>
-                          <span className="text-emerald-300">Instant WhatsApp Receipt Sent</span>
-                        </div>
+                    {/* Live STK Push Banner */}
+                    <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-3">
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="flex items-center gap-2 font-bold text-emerald-300">
+                          <span className="flex h-4 w-4 items-center justify-center rounded-full bg-emerald-500 text-slate-950 text-[10px] font-black">✓</span>
+                          M-Pesa STK Push Confirmed
+                        </span>
+                        <span className="font-mono text-xs font-bold text-white">KES 48,500.00</span>
                       </div>
                     </div>
 
@@ -302,23 +297,23 @@ export function Hero() {
                 )}
 
                 {systemTab === 'web' && (
-                  <div className="space-y-3.5 animate-fadeIn">
-                    {/* Stylized IDE Window */}
-                    <div className="rounded-2xl border border-slate-700 bg-[#090D16] p-4 text-xs font-mono text-slate-300 shadow-inner">
-                      <div className="flex items-center justify-between border-b border-slate-800 pb-2 mb-2 text-[11px]">
-                        <div className="flex items-center gap-1.5">
-                          <span className="h-2 w-2 rounded-full bg-rose-500" />
-                          <span className="h-2 w-2 rounded-full bg-amber-500" />
-                          <span className="h-2 w-2 rounded-full bg-emerald-500" />
-                          <span className="ml-2 font-sans text-slate-400">ClientPortal.tsx</span>
-                        </div>
-                        <span className="font-sans text-[10px] font-semibold text-emerald-400">TTFB: 36ms</span>
-                      </div>
-                      <div className="space-y-1 text-[11px] leading-relaxed">
-                        <div><span className="text-indigo-400">export const</span> system = <span className="text-sky-300">createPlatform</span>(&#123;</div>
-                        <div className="pl-3 text-slate-400">stack: <span className="text-emerald-300">'Next.js + TypeScript'</span>,</div>
-                        <div className="pl-3 text-slate-400">uptime: <span className="text-sky-300">99.98%</span>, latency: <span className="text-amber-300">'&lt; 45ms'</span></div>
-                        <div>&#125;);</div>
+                  <div className="space-y-3 animate-fadeIn">
+                    {/* Visual Preview Thumbnail */}
+                    <div className="relative h-28 w-full overflow-hidden rounded-2xl border border-indigo-500/30">
+                      <img
+                        src="/hero/software-engineering-studio.jpg"
+                        alt="Custom software engineering and microservices studio"
+                        className="h-full w-full object-cover object-center"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#090D16] via-[#090D16]/40 to-transparent" />
+                      <div className="absolute bottom-2 left-3 right-3 flex items-center justify-between text-xs">
+                        <span className="font-semibold text-indigo-300 flex items-center gap-1.5">
+                          <span className="h-2 w-2 rounded-full bg-indigo-400 animate-pulse" />
+                          React, Next.js &amp; FastAPI
+                        </span>
+                        <span className="text-[10px] font-mono text-indigo-200 bg-indigo-950/70 px-2 py-0.5 rounded border border-indigo-500/40">
+                          TTFB 36ms
+                        </span>
                       </div>
                     </div>
 
@@ -328,12 +323,12 @@ export function Hero() {
                         <p className="mt-0.5 font-bold text-emerald-400">100 / 100 Mobile</p>
                       </div>
                       <div className="rounded-xl border border-white/10 bg-white/[0.02] p-2.5">
-                        <span className="text-[10px] text-slate-400 uppercase">API Security</span>
-                        <p className="mt-0.5 font-bold text-indigo-300">OAuth 2.0 &amp; RBAC</p>
+                        <span className="text-[10px] text-slate-400 uppercase">Architecture</span>
+                        <p className="mt-0.5 font-bold text-indigo-300">Microservices &amp; Edge</p>
                       </div>
                     </div>
 
-                    <div className="rounded-xl border border-white/10 bg-[#090D16] p-3 text-xs flex items-center justify-between">
+                    <div className="rounded-xl border border-white/10 bg-[#090D16] p-2.5 text-xs flex items-center justify-between">
                       <span className="text-slate-400">Database Engine:</span>
                       <span className="font-semibold text-white">PostgreSQL &amp; Redis Cache</span>
                     </div>
@@ -341,21 +336,23 @@ export function Hero() {
                 )}
 
                 {systemTab === 'data' && (
-                  <div className="space-y-3.5 animate-fadeIn">
-                    {/* Live Metric Simulation Pill */}
-                    <div className="rounded-2xl border border-sky-500/20 bg-sky-500/10 p-3.5">
-                      <div className="flex items-center justify-between text-xs">
-                        <span className="font-semibold text-sky-200">Executive Revenue Tracking</span>
-                        <span className="font-bold text-emerald-400">+34.8% YoY</span>
-                      </div>
-                      <div className="mt-3 flex items-end gap-1.5 h-14">
-                        {[35, 52, 45, 68, 62, 85, 78, 96].map((val, i) => (
-                          <div
-                            key={i}
-                            className="flex-1 rounded-t bg-gradient-to-t from-sky-500 to-cyan-300 transition-all opacity-85 hover:opacity-100"
-                            style={{ height: `${val}%` }}
-                          />
-                        ))}
+                  <div className="space-y-3 animate-fadeIn">
+                    {/* Visual Preview Thumbnail */}
+                    <div className="relative h-28 w-full overflow-hidden rounded-2xl border border-sky-500/30">
+                      <img
+                        src="/hero/data-analytics-bi.jpg"
+                        alt="Executive business intelligence dashboards and predictive revenue analytics"
+                        className="h-full w-full object-cover object-center"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#090D16] via-[#090D16]/40 to-transparent" />
+                      <div className="absolute bottom-2 left-3 right-3 flex items-center justify-between text-xs">
+                        <span className="font-semibold text-sky-300 flex items-center gap-1.5">
+                          <span className="h-2 w-2 rounded-full bg-sky-400 animate-pulse" />
+                          Power BI &amp; Python ETL Pipeline
+                        </span>
+                        <span className="text-[10px] font-mono text-emerald-300 bg-sky-950/70 px-2 py-0.5 rounded border border-sky-500/40">
+                          +34.8% Growth
+                        </span>
                       </div>
                     </div>
 
@@ -365,14 +362,14 @@ export function Hero() {
                         <p className="mt-0.5 font-bold text-white">4.8x Efficiency</p>
                       </div>
                       <div className="rounded-xl border border-white/10 bg-white/[0.02] p-2.5">
-                        <span className="text-[10px] text-slate-400 uppercase">Organic Search</span>
-                        <p className="mt-0.5 font-bold text-emerald-400">#1 Nairobi Keywords</p>
+                        <span className="text-[10px] text-slate-400 uppercase">Reporting Lag</span>
+                        <p className="mt-0.5 font-bold text-emerald-400">&lt; 1 Hour Turnaround</p>
                       </div>
                     </div>
 
-                    <div className="rounded-xl border border-white/10 bg-[#090D16] p-3 text-xs flex items-center justify-between">
-                      <span className="text-slate-400">Power BI &amp; Python ETL:</span>
-                      <span className="font-semibold text-sky-300">Hourly Auto-Refresh</span>
+                    <div className="rounded-xl border border-white/10 bg-[#090D16] p-2.5 text-xs flex items-center justify-between">
+                      <span className="text-slate-400">ETL Pipeline Sync:</span>
+                      <span className="font-semibold text-sky-300">Hourly Automated Snapshot</span>
                     </div>
                   </div>
                 )}

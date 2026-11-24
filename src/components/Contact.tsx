@@ -116,13 +116,14 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="section-padding relative">
+    <section id="contact" className="section-padding relative overflow-hidden bg-[#F8FAFC] text-slate-900 border-t border-slate-200/80">
       <div id="quote" className="sr-only" aria-hidden="true" />
       <div ref={ref} className="mx-auto max-w-7xl">
         <SectionHeading
           eyebrow="Get In Touch"
           title="Contact Us"
           description="Share your project requirements and our team will respond with a tailored proposal within one business day."
+          theme="light"
         />
 
         <div className="mt-14 grid gap-8 lg:grid-cols-5">
@@ -157,18 +158,18 @@ export function Contact() {
               />
             </div>
 
-            {/* Map placeholder */}
-            <div className="mt-6 overflow-hidden rounded-3xl glass">
-              <div className="relative h-56 bg-gradient-to-br from-navy-800 to-navy-950">
-                <div className="absolute inset-0 bg-grid-pattern bg-grid opacity-40" />
+            {/* Map preview */}
+            <div className="mt-6 overflow-hidden rounded-3xl border border-slate-200/90 bg-white shadow-2xs">
+              <div className="relative h-56 bg-gradient-to-br from-slate-100 via-indigo-50/40 to-slate-100">
+                <div className="absolute inset-0 bg-grid-pattern bg-grid opacity-30" />
                 {/* Stylized map pins */}
                 <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                  <span className="absolute h-16 w-16 -translate-x-1/2 -translate-y-1/2 rounded-full bg-electric-500/30 animate-pulse-glow" />
-                  <span className="absolute h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full bg-electric-500/40 animate-pulse-glow" />
-                  <MapPin className="relative h-8 w-8 -translate-x-1/2 -translate-y-1/2 text-electric-300 drop-shadow-glow" />
+                  <span className="absolute h-16 w-16 -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-500/15 animate-pulse-glow" />
+                  <span className="absolute h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-500/25 animate-pulse-glow" />
+                  <MapPin className="relative h-8 w-8 -translate-x-1/2 -translate-y-1/2 text-indigo-600 drop-shadow-sm" />
                 </div>
-                <div className="absolute bottom-4 left-4 rounded-lg glass-strong px-3 py-1.5 text-xs font-medium text-silver-200">
-                  Nairobi, Kenya
+                <div className="absolute bottom-4 left-4 rounded-xl border border-slate-200/90 bg-white/95 px-3 py-1.5 text-xs font-semibold text-slate-800 shadow-sm backdrop-blur-sm">
+                  Nairobi, Kenya • Central Business District
                 </div>
               </div>
             </div>
@@ -178,7 +179,7 @@ export function Contact() {
           <div className="reveal lg:col-span-3" style={{ transitionDelay: '140ms' }}>
             <form
               onSubmit={handleSubmit}
-              className="glass rounded-3xl p-6 sm:p-8"
+              className="rounded-3xl border border-slate-200/90 bg-white p-6 sm:p-8 shadow-sm"
               noValidate
             >
               <div className="grid gap-5 sm:grid-cols-2">
@@ -225,7 +226,7 @@ export function Contact() {
                     <select value={form.service} onChange={update('service')} className={inputClass}>
                       <option value="">Select a service</option>
                       {serviceOptions.map((s) => (
-                        <option key={s} value={s} className="bg-navy-800">
+                        <option key={s} value={s}>
                           {s}
                         </option>
                       ))}
@@ -249,7 +250,7 @@ export function Contact() {
               <button
                 type="submit"
                 disabled={status === 'loading'}
-                className="btn-primary mt-6 w-full disabled:cursor-not-allowed disabled:opacity-70"
+                className="mt-6 flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-indigo-600 to-blue-600 px-6 py-3.5 text-sm font-bold text-white shadow-md transition-all hover:from-indigo-700 hover:to-blue-700 hover:shadow-indigo-500/25 disabled:cursor-not-allowed disabled:opacity-70"
               >
                 {status === 'loading' ? (
                   <>
@@ -265,14 +266,14 @@ export function Contact() {
               </button>
 
               {status === 'success' && (
-                <div className="mt-4 flex items-center gap-2 rounded-xl border border-green-500/30 bg-green-500/10 px-4 py-3 text-sm text-green-300">
-                  <CheckCircle2 className="h-5 w-5 flex-shrink-0" />
+                <div className="mt-4 flex items-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-800">
+                  <CheckCircle2 className="h-5 w-5 flex-shrink-0 text-emerald-600" />
                   Thank you! Your message has been received. We'll be in touch shortly.
                 </div>
               )}
               {status === 'error' && (
-                <div className="mt-4 flex items-center gap-2 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
-                  <AlertCircle className="h-5 w-5 flex-shrink-0" />
+                <div className="mt-4 flex items-center gap-2 rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm font-semibold text-rose-800">
+                  <AlertCircle className="h-5 w-5 flex-shrink-0 text-rose-600" />
                   {errorMsg}
                 </div>
               )}
@@ -285,7 +286,7 @@ export function Contact() {
 }
 
 const inputClass =
-  'w-full rounded-xl border border-white/10 bg-navy-900/50 px-4 py-3 text-sm text-white placeholder:text-silver-400 transition-all focus:border-electric-500/50 focus:outline-none focus:ring-2 focus:ring-electric-500/20';
+  'w-full rounded-xl border border-slate-300 bg-slate-50/60 px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 transition-all focus:border-indigo-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 shadow-2xs';
 
 function Field({
   label,
@@ -298,9 +299,9 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="mb-2 block text-xs font-semibold uppercase tracking-wider text-silver-300">
+      <span className="mb-2 block text-xs font-semibold uppercase tracking-wider text-slate-600">
         {label}
-        {required && <span className="text-ember-400"> *</span>}
+        {required && <span className="text-rose-500"> *</span>}
       </span>
       {children}
     </label>
@@ -321,16 +322,18 @@ function ContactInfoCard({
   accent: 'blue' | 'ember';
 }) {
   return (
-    <div className="glass flex items-start gap-4 rounded-2xl p-5 transition-all hover:-translate-y-0.5 hover:border-electric-500/30">
+    <div className="flex items-start gap-4 rounded-2xl border border-slate-200/90 bg-white p-5 shadow-2xs transition-all hover:-translate-y-0.5 hover:border-indigo-400 hover:shadow-md">
       <span
-        className={`flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl ${
-          accent === 'blue' ? 'bg-electric-500/15 text-electric-300' : 'bg-ember-500/15 text-ember-400'
+        className={`flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl border ${
+          accent === 'blue'
+            ? 'border-indigo-200 bg-indigo-50 text-indigo-600'
+            : 'border-amber-200 bg-amber-50 text-amber-600'
         }`}
       >
         {icon}
       </span>
       <div className="flex flex-col">
-        <span className="text-xs font-semibold uppercase tracking-wider text-silver-400">
+        <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
           {title}
         </span>
         {lines.map((l) =>
@@ -338,12 +341,12 @@ function ContactInfoCard({
             <a
               key={l}
               href={href}
-              className="text-sm font-medium text-white transition-colors hover:text-cyan-300"
+              className="text-sm font-bold text-slate-900 transition-colors hover:text-indigo-600"
             >
               {l}
             </a>
           ) : (
-            <span key={l} className="text-sm font-medium text-white">
+            <span key={l} className="text-sm font-semibold text-slate-900">
               {l}
             </span>
           )
